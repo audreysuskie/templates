@@ -1,0 +1,25 @@
+.nav-wrapper
+  - if (user.role === 'user')
+    .user-view-nav
+      a(href='/services') 
+        .nav-link Our Services
+      a(href='/dashboard') 
+        .nav-link History
+      a(href='/bookings') 
+        .nav-link Bookings
+      a(href='/account') 
+        .nav-link Account Settings
+      a#logout 
+        .nav-link Log Out
+  - if (user.role === 'admin')
+    .admin-view-nav
+      a(href='/services') 
+        .nav-link Services
+      a(href='/bookings') 
+        .nav-link Bookings
+      a(href='/clientlist') 
+        .nav-link Client List
+      a(href='/account') 
+        .nav-link Account Settings
+      a#logout 
+        .nav-link Log Out

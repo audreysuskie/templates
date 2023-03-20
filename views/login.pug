@@ -1,0 +1,18 @@
+extends base
+
+block content
+  main.main
+    .page-content
+      .form-style
+        .form-title= title
+        form#login-form
+          .form-group
+            label.form-label(for='email') Email address
+            input#email.form-input(type='email', name='email' placeholder='you@example.com', required)
+          .form-group
+            label.form-label(for='password') Password
+            input#password.form-input(type='password', name='password' placeholder='••••••••', required, minlength='8')
+          
+          .form-group
+            button.submit.form-button Login
+            a.form-link-text(href='/forgotpassword') Forgot Password?

@@ -1,0 +1,56 @@
+.nav-logo-box {
+  height: 4.4rem;
+  font-size: 2rem;
+  line-height: 4.2rem;
+  padding: 0rem 1.1rem;
+  border: 0.1rem solid var(--headertext);
+}
+
+.loginBar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 100rem;
+  padding: 3rem 1rem 1rem 1rem;
+}
+
+.login a {
+  text-decoration: none;
+  color: var(--headertext);
+}
+
+.login a:hover {
+  color: silver;
+  border: silver;
+}
+
+#logout:hover {
+  color: silver;
+  cursor: pointer;
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-left {
+  display: flex;
+  flex-direction: row;
+}
+
+.login-menu {
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  line-height: 4.2rem;
+  text-transform: capitalize;
+}

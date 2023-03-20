@@ -1,0 +1,242 @@
+.header-main {
+  position: relative;
+  height: 520px;
+  width: 100%;
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  max-width: 100rem;
+  height: 520px;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  padding: 8rem;
+  overflow: hidden;
+}
+
+.main-image-wrapper {
+  display: block;
+  position: absolute;
+  background-image: url('/images/JumboImage.jpg');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  width: 100%;
+  height: 520px;
+  top: 0;
+  left: 0;
+  text-align: center;
+  overflow: hidden;
+  background-color: var(--bgcolordark);
+}
+
+.main-image {
+  height: 520px;
+  margin-left: 10vw;
+}
+
+.text-wrapper {
+  width: 100%;
+  padding-right: 45%;
+  padding-left: 1rem;
+  text-align: center;
+}
+
+.text-overlay {
+  color: var(--overlaytext);
+  font-size: 5.5rem;
+  font-weight: 400;
+  line-height: 110%;
+  text-transform: uppercase;
+  animation: fadeIn 2.5s linear backwards;
+  letter-spacing: -0.1rem;
+}
+
+.btn:link,
+.btn:visited {
+  position: relative;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 3rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 3rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn:active::after {
+  transform: scaleX(1.3) scaleY(1.6);
+  opacity: 0;
+}
+
+.home-button {
+  background-color: white;
+  color: var(--buttontext);
+  margin-top: 25px;
+  animation: slideFromBottom 0.5s ease-out backwards 0.5s;
+}
+
+.home-button::after {
+  background-color: white;
+  opacity: 0.5;
+}
+
+.book-button {
+  width: 200px;
+  background-color: #000;
+  color: white;
+  margin: 15px auto 0px auto;
+}
+
+.book-button::after {
+  width: 200px;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.section-heading {
+  display: block;
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+  background-color: #fff;
+  text-align: center;
+  color: var(--pagetitle);
+  font-size: 4rem;
+  padding: 4rem 0rem 1rem 0rem;
+  font-weight: 300;
+  letter-spacing: -0.1rem;
+}
+
+.section-heading.is-visible {
+  animation: fadeFromLeft 2s ease-out forwards;
+}
+
+.slider {
+  box-sizing: content-box;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 14rem;
+  white-space: nowrap;
+  overflow-x: scroll; /* Show horizontal scrollbar */
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--bgcolordark);
+  background-color: #fff;
+  padding: 10px 0px;
+}
+
+/* width */
+.slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+/* Track */
+.slider::-webkit-scrollbar-track {
+  background: var(--bgcolormed);
+}
+
+/* Handle */
+.slider::-webkit-scrollbar-thumb {
+  background: var(--bgcolordark);
+}
+
+/* Handle on hover */
+.slider::-webkit-scrollbar-thumb:hover {
+  background: var(--bgcolordark);
+}
+
+.item-box {
+  position: relative;
+  top: 30%;
+  margin: -7vh 30px 0px 30px;
+  height: 14rem;
+  width: 25%;
+  overflow: hidden;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(24%);
+  animation: fadeIn 2s linear backwards;
+}
+
+.item-box img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 25rem;
+  transform: translateY(-50%) translateX(-50%);
+  cursor: pointer;
+}
+
+.box-detail-text {
+  font-size: 1.4rem;
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  text-align: center;
+  color: var(--linktext);
+  opacity: 1;
+}
+
+.home-section {
+  width: 100%;
+  margin: 0rem auto;
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.home-row {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.white {
+  background-color: #fff;
+}
+
+.home-section-col {
+  width: 50%;
+  padding: 4rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}

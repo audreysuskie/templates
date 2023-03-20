@@ -1,0 +1,8 @@
+node_modules/
+node_modules
+*.env
+Web Site Original Files/
+.DS_Store/
+.cache/
+.parcel-cache/
+resources/

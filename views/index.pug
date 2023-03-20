@@ -1,0 +1,75 @@
+extends base
+include reviews
+
+block content
+  main.main
+    .page-content
+      .header-main
+        .main-image-wrapper 
+          //-img.main-image(src='/images/JumboImage.jpg')
+        .main-content-wrapper
+          .text-wrapper
+            .text-overlay Don't wait to be the most beautiful you
+            a(href='#').btn.home-button Our Services
+      .home-section.white     
+        .section-heading Which product is right for you?
+        .box-detail-text Click logos for more information.
+        .slider 
+          .item-box 
+            img.item-logo(src='/images/xeomin.png', title='Relaxes wrinkles', value='Forehead, between the eyes (frown lines)', name='Lasts 3-6 months')
+          .item-box 
+            img.item-logo(src='/images/botox.png', title='Relaxes wrinkles', value='Forehead, between the eyes (frown lines), outside and around the eyes (crow\'s feet)', name='Lasts 3-4 months')
+          .item-box 
+            img.item-logo(src='/images/juvederm.png', title='Smoothes fine lines, fills in deeper lines and wrinkles and modifies lip shape', value='Outside of the mouth and around the nose (smile lines/nasolabial folds) and lips', name='12-18 months, depending on areas treated')
+          .item-box
+            img.item-logo(src='/images/restylane.png', title='Relaxes wrinkles, fills in deeper lines, adds volume to cheek area and modifies lip shape', value='Outside of the mouth and around the nose (smile lines/nasolabial folds), lips and cheeks', name='Lasts 9-12 months')
+          .item-box 
+            img.item-logo(src='/images/RestylaneLyft.png', title='Adds volume to cheek area', value='Cheeks', name='About 12 months')
+          .item-box 
+            img.item-logo(src='/images/voluma.png', title='Adds volume to cheek area', value='Cheeks', name='About 2 years')
+        
+      .home-row 
+        .home-section-col 
+          include _calendar
+        .home-section-col
+          .page-title Book Your Service Today
+          .form-text Select a date from one of the highlighted dates on the calendar. Then select a time from the available options.
+
+          form#booking-form(style='width: 100%;')
+            .form-group(style='width: 100%;')
+              label.form-label(for='service') Select Service
+              select.form-input(id='service',name='service')
+                option(value='not selected' selected) select service -
+                option(value='consultation') Free 30 min. Consultation
+                option(value='botox') Botox
+                option(value='juvederm') Juvederm
+                option(value='restylane') Restylane
+                option(value='restylane-lyft') Restylane Lyft
+                option(value='restylane') Restylane
+                option(value='voluma') Voluma
+            .form-row
+              .form-group
+                label.form-label(for='book-date') Date Selected
+                input#book-date.form-input(type='text', name='book-date' required)
+              .form-group
+                label.form-label(for='book-time') Appointment Time
+                select.form-input(id='book-time',name='book-time')
+                  option(value='not selected' selected) times available
+                  option(value='9:00am') 9:00am
+                  option(value='10:30am') 10:30am
+                  option(value='12:00pm') 12:00pm
+                  option(value='1:30pm') 1:30pm
+                  option(value='3:00pm') 3:00pm
+                  option(value='4:30pm') 4:30pm
+            
+            .form-group
+              a(href='#').btn.book-button Book Now
+
+      .home-section.white
+        .section-heading.scrollAni Testimonials
+        .reviews_grid.scrollAni
+          each review in reviews
+            +reviews(review)
+
+  include _modal
+

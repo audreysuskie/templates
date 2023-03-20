@@ -1,0 +1,32 @@
+header
+  .loginBar
+    if !user
+      .login
+        .nav-left
+          .nav-logo-box
+            a(href='/')
+              .logo-sub LOGO
+          a.login-menu(href='/services') services
+          a.login-menu(href='/aboutus') about us
+          a.login-menu(href='/faqs') FAQ's   
+          a.login-menu(href='/contact') contact us   
+        .nav-right
+          a#login.login-menu(href='/login') login
+          .login-menu |
+          a#signup.login-menu(href='/signup') create account
+
+    if user
+      .login
+        .nav-left
+          .nav-logo-box
+            a(href='/')
+              .logo-sub LOGO
+          a.login-menu(href='/services') services
+          a.login-menu(href='/aboutus') about us
+          a.login-menu(href='/faqs') FAQ's
+          a.login-menu(href='/contact') contact us
+        .nav-right
+          .login-menu= `Hello ${user.name.split(' ')[0]}!`
+          .login-menu |
+          a.login-menu(href='/account') view account
+          

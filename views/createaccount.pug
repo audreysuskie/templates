@@ -1,0 +1,23 @@
+extends base
+
+block content
+  main.main
+    .page-content
+      .form-style
+        .form-title= title
+        form#form-signup
+          .form-group
+            label.form-label(for='name') Name
+            input#name.form-input(type='name', placeholder='Your name here', required)
+          .form-group
+            label.form-label(for='email') Email address
+            input#email.form-input(type='email', placeholder='you@example.com', required)
+          .form-group
+            label.form-label(for='password') Password 
+              span.small (a minimim of 8 characters is required)
+            input#password.form-input(type='password', autocomplete='new-password', required, minlength='8')
+          .form-group
+            label.form-label(for='passwordConfirm') Confirm Password
+            input#password-confirm.form-input(type='password', autocomplete='new-password', required)
+          .form-group
+            button.submitButton.submit.form-button Create Account
