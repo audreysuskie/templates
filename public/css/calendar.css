@@ -130,3 +130,13 @@ form.form-inline {
 .ua-bg {
   background-color: gray;
 }
+
+.booking:hover {
+  background-color: var(--bgcolordark);
+  color: white;
+  cursor: pointer;
+}
+
+.available {
+  background-color: rgb(246, 201, 220);
+}

@@ -5,18 +5,18 @@ let selectYear = document.getElementById('year');
 let selectMonth = document.getElementById('month');
 
 let months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
+  'January',
+  'February',
+  'March',
+  'April',
   'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 let monthAndYear = document.getElementById('monthAndYear');
@@ -71,6 +71,8 @@ function showCalendar(month, year) {
         break;
       } else {
         let cell = document.createElement('td');
+        cell.classList.add('booking');
+        cell.setAttribute('value', date);
         let cellText = document.createTextNode(date);
         if (
           date === today.getDate() &&
@@ -89,3 +91,13 @@ function showCalendar(month, year) {
     tbl.appendChild(row); // appending each row into calendar body.
   }
 }
+
+const booking = document.getElementById('book-date');
+const month = document.getElementById('monthAndYear').innerText.split(' ')[0];
+const year = document.getElementById('monthAndYear').innerText.split(' ')[1];
+
+$(document).ready(function () {
+  $('.booking').click(function () {
+    booking.value = month + ' ' + $(this).attr('value') + ', ' + year;
+  });
+});
