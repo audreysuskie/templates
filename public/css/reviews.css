@@ -6,7 +6,7 @@
 }
 
 .reviews_grid {
-  padding: 2rem 5rem;
+  padding: 2rem 2.5rem;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-column-gap: 20px;
@@ -48,6 +48,7 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   justify-content: space-between;
+  border-radius: 7.5px;
 }
 .reviews:before,
 .reviews:after {
