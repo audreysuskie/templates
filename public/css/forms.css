@@ -56,15 +56,15 @@ font-family: 'Quicksand', sans-serif; */
 }
 
 .form-input {
-  padding: 1.25rem 0.5rem;
+  padding: 0.75rem 0.5rem;
   font-size: 1.8rem;
   font-weight: 300;
   background-color: transparent;
   border-style: hidden;
   border-color: transparent;
   border-image: none;
-  border-bottom: 1.5px solid var(--bgcolordark);
-  color: var(--bgcolordark);
+  border-bottom: 1.5px solid var(--navtext);
+  color: var(--navtext);
 }
 
 .form-input:focus {
