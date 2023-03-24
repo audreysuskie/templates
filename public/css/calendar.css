@@ -1,5 +1,9 @@
 .calendar-wrapper {
   width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0.75rem 1.3rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.75rem 1.3rem rgba(0, 0, 0, 0.2);
 }
 
 #calendar {
@@ -7,21 +11,19 @@
   width: 100%;
 }
 
-.calendarTable {
-  -webkit-box-shadow: 0 0.75rem 1.3rem rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0.75rem 1.3rem rgba(0, 0, 0, 0.2);
-}
-
 .calendarTitle {
   font-size: 2.4rem;
   font-weight: 400;
-  color: var(--pagetitle);
+  color: #fff;
   text-align: center;
   line-height: 50px;
 }
 
 .titleRow {
+  position: relative;
   height: auto;
+  background-color: var(--pagetitle);
+  z-index: 2;
 }
 
 .thead {
@@ -29,7 +31,6 @@
   display: grid;
   grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
   text-align: center;
-  border-radius: 5px 5px 0px 0px;
 }
 .tr {
   display: grid;
@@ -45,7 +46,6 @@
 .tbody {
   position: relative;
   background: #fff;
-  border-radius: 0px 0px 5px 5px;
 }
 
 .td {
@@ -69,6 +69,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 3;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -82,7 +83,7 @@
   border: 0;
   width: 30%;
   background: none;
-  color: var(--pagetitle);
+  color: #fff;
 }
 
 .calendarButtons button:disabled {
