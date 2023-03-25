@@ -116,3 +116,12 @@
   background-color: var(--pagetitle);
   color: white;
 }
+
+.unavailable {
+  opacity: 0.5;
+}
+
+.unavailable:hover {
+  background-color: white;
+  cursor: default;
+}

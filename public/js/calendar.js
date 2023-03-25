@@ -4,10 +4,10 @@ let calendarShow = 1;
 function formatToday(date) {
   var d = new Date(date),
     month = d.getMonth() + 1,
-    day = d.getDate(),
+    day = ('0' + d.getDate()).slice(-2),
     year = d.getFullYear();
 
-  return [month, day, year].join(' ');
+  return [month, day, year].join('');
 }
 
 formatToday(today);
@@ -61,7 +61,6 @@ function getDatesBetween(date1, date2) {
     LastDate = dates[i];
     firstDate = new Date(dates[i].getFullYear(), dates[i].getMonth(), 1);
     firstMonth = getMonthName(i + 1);
-    currentDay = firstDate.toString().split(' ')[0];
     currentMonth = firstDate.getMonth() + 1;
     currentYear = firstDate.getFullYear();
 
@@ -87,16 +86,14 @@ function getDatesBetween(date1, date2) {
       content += '<div class="tr">';
 
       for (let k = 0; k < 7; k++) {
-        displayNum = j;
+        displayNum = j < 10 ? '0' + j : j;
 
         if (j === 1) {
           if (firstDate.toString().split(' ')[0] == weekDays[k].shortDay) {
             content +=
-              '<div class="td" id="' +
+              '<div class="td available" id="' +
               currentMonth +
-              ' ' +
               displayNum +
-              ' ' +
               currentYear +
               '" value="' +
               firstDate.toLocaleString('en-US', { month: 'long' }) +
@@ -115,11 +112,9 @@ function getDatesBetween(date1, date2) {
           content += '<div class="td nohover"></div>';
         } else {
           content +=
-            '<div class="td" id="' +
+            '<div class="td available" id="' +
             currentMonth +
-            ' ' +
             displayNum +
-            ' ' +
             currentYear +
             '" value="' +
             firstDate.toLocaleString('en-US', { month: 'long' }) +
@@ -190,13 +185,21 @@ function formatDate(date) {
 let content = getDatesBetween(formatDate(today), '2024/01/01');
 document.getElementById('calendar').innerHTML = content;
 
-const td = document.getElementById(formatToday(today));
-td.classList.add('today');
+const currentDay = document.getElementById(formatToday(today));
+const td = document.querySelectorAll('.td');
+currentDay.classList.add('today');
+for (let t = 0; t < td.length; t++) {
+  if (td[t].id < formatToday(today)) {
+    td[t].classList.remove('available');
+    td[t].classList.add('unavailable');
+  }
+  console.log(formatDate(today));
+}
 
 const booking = document.getElementById('book-date');
 
 $(document).ready(function () {
-  $('.td').click(function () {
+  $('.available').click(function () {
     $('.td').removeClass('selected');
     booking.value = $(this).attr('value');
     $(this).addClass('selected');
