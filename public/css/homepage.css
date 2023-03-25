@@ -130,13 +130,13 @@
   width: 100%;
   max-width: 100rem;
   margin: 0 auto;
-  background-color: #fff;
   text-align: center;
   color: var(--pagetitle);
-  font-size: 4rem;
+  font-size: 3.5rem;
   padding: 4rem 0rem 1rem 0rem;
-  font-weight: 300;
+  font-weight: 100;
   letter-spacing: -0.1rem;
+  text-transform: uppercase;
 }
 
 .section-heading.is-visible {
@@ -155,7 +155,7 @@
   scroll-behavior: smooth;
   scrollbar-color: var(--bgcolordark);
   background-color: #fff;
-  padding: 10px 0px;
+  padding: 10px 0px 5px 0px;
 }
 
 /* width */
@@ -210,6 +210,26 @@
   text-align: center;
   color: var(--linktext);
   opacity: 1;
+}
+
+.arrow-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 30px;
+  background-color: #b8b0a556;
+  color: var(--bgcolordark);
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
 }
 
 .home-section {
