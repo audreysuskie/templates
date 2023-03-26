@@ -17,6 +17,11 @@ router.get('/', authController.isLoggedIn, viewsController.getHomePage);
 
 router.get('/email', viewsController.checkEmail);
 router.get('/test', viewsController.tempPage);
+router.get(
+  '/bookings',
+  authController.isLoggedIn,
+  viewsController.userBookings
+);
 router.get('/forgotpassword', viewsController.forgotPasswordForm);
 router.get('/account', authController.isLoggedIn, viewsController.getAccount);
 router.get('/login', authController.isLoggedIn, viewsController.getLoginForm);

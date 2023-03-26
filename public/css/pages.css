@@ -80,3 +80,25 @@
   color: silver;
   opacity: 0.6;
 }
+
+.booking-row {
+  display: block;
+  margin-top: 20px;
+  font-size: 1.8rem;
+  color: var(--pagetitle);
+}
+
+.booking-subhead {
+  font-weight: bold;
+  line-height: 170%;
+}
+
+.booking-text {
+  display: inline;
+  font-weight: 100;
+  text-transform: capitalize;
+}
+
+.booking-count {
+  line-height: 150%;
+}

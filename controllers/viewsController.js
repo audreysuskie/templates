@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const Review = require('../models/reviewModel');
+const Event = require('../models/eventModel');
 const catchAsync = require('../utils/catchAsync');
 // const AppError = require('../utils/appError');
 // const factory = require('./handlerFactory');
@@ -22,6 +23,15 @@ exports.getHomePage = catchAsync(async (req, res) => {
   res.status(200).render('index', {
     title: 'Home Page',
     reviews,
+  });
+});
+
+exports.userBookings = catchAsync(async (req, res) => {
+  const userId = res.locals.user.id;
+  const events = await Event.find({ user: userId });
+  res.status(200).render('bookings', {
+    title: 'User Bookings',
+    events,
   });
 });
 

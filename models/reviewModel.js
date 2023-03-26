@@ -27,7 +27,7 @@ const reviewSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
-      required: [true, 'A review must be written by a user.'],
+      required: [true, 'You must be logged in to leave a review.'],
     },
   },
   {

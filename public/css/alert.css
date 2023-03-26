@@ -1,5 +1,5 @@
 .alert-container {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   background-color: #00000086;
@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  scroll-behavior: none;
 }
 .alert {
   display: flex;

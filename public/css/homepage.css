@@ -112,17 +112,42 @@
   opacity: 0.5;
 }
 
-.book-button {
+button.book-button,
+.login-button {
+  position: relative;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 3rem;
+  border: 0;
+  transition: all 0.2s;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
   width: 200px;
   background-color: #000;
   color: white;
   margin: 15px auto 0px auto;
 }
 
-.book-button::after {
-  width: 200px;
+button.book-button::after,
+.login-button::after {
   background-color: #000;
   opacity: 0.5;
+}
+
+.login-button {
+  margin-bottom: 25px;
+}
+
+.page-text,
+.page-text a {
+  color: var(--linktext);
+}
+
+.page-text a:hover {
+  color: #000;
 }
 
 .section-heading {
@@ -237,6 +262,9 @@
   margin: 0rem auto;
   position: relative;
   padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .home-row {

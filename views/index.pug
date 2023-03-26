@@ -32,41 +32,49 @@ block content
         
       .home-section
         .section-heading Book Your Service Today
-        .home-row 
-          .home-section-col 
-            include _calendar
-          .home-section-col
-            .form-text Select a date from one of the available dates on the calendar. Then select a service and an appointment time from the available options.
+        if user
+          .home-row 
+            .home-section-col 
+              include _calendar
+            .home-section-col
+              .form-text Select a date from one of the available dates on the calendar. Then select a service and an appointment time from the available options.
 
-            form#booking-form(style='width: 100%;')
-              .form-group(style='width: 100%;')
-                label.form-label(for='service') Select Service
-                select.form-input(id='service',name='service')
-                  option(value='not selected' selected) select service -
-                  option(value='consultation') Free 30 min. Consultation
-                  option(value='botox') Botox
-                  option(value='juvederm') Juvederm
-                  option(value='restylane') Restylane
-                  option(value='restylane-lyft') Restylane Lyft
-                  option(value='restylane') Restylane
-                  option(value='voluma') Voluma
-              .form-row
+              form#booking-form(style='width: 100%;')
+                .form-group(style='width: 100%;')
+                  label.form-label(for='service') Select Service
+                  select.form-input(id='service',name='service')
+                    option(value='not selected' selected) select service -
+                    option(value='consultation') Free 30 min. Consultation
+                    option(value='botox') Botox
+                    option(value='juvederm') Juvederm
+                    option(value='restylane') Restylane
+                    option(value='restylane-lyft') Restylane Lyft
+                    option(value='restylane') Restylane
+                    option(value='voluma') Voluma
+                .form-row
+                  .form-group
+                    label.form-label(for='book-date') Date Selected
+                    input#book-date.form-input(type='text', name='book-date' required)
+                  .form-group
+                    label.form-label(for='book-time') Appointment Time
+                    select.form-input(id='book-time',name='book-time')
+                      option(value='not selected' selected) times available
+                      option(value='9:00am') 9:00am
+                      option(value='10:30am') 10:30am
+                      option(value='12:00pm') 12:00pm
+                      option(value='1:30pm') 1:30pm
+                      option(value='3:00pm') 3:00pm
+                      option(value='4:30pm') 4:30pm
+                
                 .form-group
-                  label.form-label(for='book-date') Date Selected
-                  input#book-date.form-input(type='text', name='book-date' required)
-                .form-group
-                  label.form-label(for='book-time') Appointment Time
-                  select.form-input(id='book-time',name='book-time')
-                    option(value='not selected' selected) times available
-                    option(value='9:00am') 9:00am
-                    option(value='10:30am') 10:30am
-                    option(value='12:00pm') 12:00pm
-                    option(value='1:30pm') 1:30pm
-                    option(value='3:00pm') 3:00pm
-                    option(value='4:30pm') 4:30pm
-              
-              .form-group
-                a(href='#').btn.book-button Book Now
+                  button.btn.submit.book-button Book Now
+
+        if !user
+          .home-section 
+            a(href='/login').btn.login-button Login Now
+            .page-text Don't have an account? 
+              a(href='/signup') Create one now
+              span  to book an appointment!
 
       .home-section.white
         .section-heading.scrollAni Testimonials
