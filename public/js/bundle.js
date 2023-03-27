@@ -12669,7 +12669,7 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var createevent = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(eventDate, eventTime, service) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(dateString, eventDate, eventTime, service) {
     var res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
@@ -12680,6 +12680,7 @@ var createevent = /*#__PURE__*/function () {
             method: 'POST',
             url: "/api/v1/events/",
             data: {
+              dateString: dateString,
               eventDate: eventDate,
               eventTime: eventTime,
               service: service
@@ -12706,7 +12707,7 @@ var createevent = /*#__PURE__*/function () {
       }
     }, _callee, null, [[0, 7]]);
   }));
-  return function createevent(_x, _x2, _x3) {
+  return function createevent(_x, _x2, _x3, _x4) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -13436,7 +13437,8 @@ if (bookingForm) {
     var eventDate = document.getElementById('book-date').value;
     var eventTime = document.getElementById('book-time').value;
     var service = document.getElementById('service').value;
-    (0, _createevent.createevent)(eventDate, eventTime, service);
+    var dateString = document.getElementById('date-string').value;
+    (0, _createevent.createevent)(dateString, eventDate, eventTime, service);
   });
 }
 if (signupForm) {

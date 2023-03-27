@@ -49,6 +49,7 @@
   -ms-flex-align: center;
   justify-content: space-between;
   border-radius: 7.5px;
+  text-align: left;
 }
 .reviews:before,
 .reviews:after {

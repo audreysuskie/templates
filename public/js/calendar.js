@@ -122,6 +122,12 @@ function getDatesBetween(date1, date2) {
             displayNum +
             ', ' +
             currentYear +
+            '" data-date="' +
+            currentYear +
+            '-' +
+            currentMonth +
+            '-' +
+            displayNum +
             '">' +
             displayNum +
             '</div>';
@@ -197,11 +203,13 @@ for (let t = 0; t < td.length; t++) {
 }
 
 const booking = document.getElementById('book-date');
+const dateString = document.getElementById('date-string');
 
 $(document).ready(function () {
   $('.available').click(function () {
     $('.td').removeClass('selected');
     booking.value = $(this).attr('value');
+    dateString.value = $(this).attr('data-date');
     $(this).addClass('selected');
   });
 });

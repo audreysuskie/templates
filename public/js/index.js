@@ -32,7 +32,8 @@ if (bookingForm) {
     const eventDate = document.getElementById('book-date').value;
     const eventTime = document.getElementById('book-time').value;
     const service = document.getElementById('service').value;
-    createevent(eventDate, eventTime, service);
+    const dateString = document.getElementById('date-string').value;
+    createevent(dateString, eventDate, eventTime, service);
   });
 }
 

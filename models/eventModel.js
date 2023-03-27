@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+('use strict');
+const mongooseDateFormat = require('mongoose-date-format');
 
 const eventSchema = new mongoose.Schema(
   {
@@ -10,6 +12,11 @@ const eventSchema = new mongoose.Schema(
     eventTime: {
       type: String,
       required: [true, 'Please specify a booking time.'],
+    },
+
+    dateString: {
+      type: Date,
+      default: new Date(),
     },
 
     service: {
@@ -43,6 +50,7 @@ eventSchema.pre(/^find/, function (next) {
   next();
 });
 
+eventSchema.plugin(mongooseDateFormat);
 const Event = mongoose.model('Event', eventSchema);
 
 module.exports = Event;

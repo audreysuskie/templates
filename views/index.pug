@@ -40,17 +40,18 @@ block content
               .form-text Select a date from one of the available dates on the calendar. Then select a service and an appointment time from the available options.
 
               form#booking-form(style='width: 100%;')
+                input#date-string(type='hidden', name='date-string')
                 .form-group(style='width: 100%;')
                   label.form-label(for='service') Select Service
                   select.form-input(id='service',name='service')
                     option(value='not selected' selected) select service -
-                    option(value='consultation') Free 30 min. Consultation
-                    option(value='botox') Botox
-                    option(value='juvederm') Juvederm
-                    option(value='restylane') Restylane
-                    option(value='restylane-lyft') Restylane Lyft
-                    option(value='restylane') Restylane
-                    option(value='voluma') Voluma
+                    option(value='Consultation') Free 30 min. Consultation
+                    option(value='Botox') Botox
+                    option(value='Juvederm') Juvederm
+                    option(value='Restylane') Restylane
+                    option(value='Restylane-Lyft') Restylane Lyft
+                    option(value='Restylane') Restylane
+                    option(value='Voluma') Voluma
                 .form-row
                   .form-group
                     label.form-label(for='book-date') Date Selected
@@ -59,7 +60,7 @@ block content
                     label.form-label(for='book-time') Appointment Time
                     select.form-input(id='book-time',name='book-time')
                       option(value='not selected' selected) times available
-                      option(value='9:00am') 9:00am
+                      option(value='09:00am') 9:00am
                       option(value='10:30am') 10:30am
                       option(value='12:00pm') 12:00pm
                       option(value='1:30pm') 1:30pm

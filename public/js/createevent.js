@@ -3,12 +3,18 @@ import '@babel/polyfill';
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const createevent = async (eventDate, eventTime, service) => {
+export const createevent = async (
+  dateString,
+  eventDate,
+  eventTime,
+  service
+) => {
   try {
     const res = await axios({
       method: 'POST',
       url: `/api/v1/events/`,
       data: {
+        dateString,
         eventDate,
         eventTime,
         service,

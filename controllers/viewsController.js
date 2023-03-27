@@ -28,7 +28,10 @@ exports.getHomePage = catchAsync(async (req, res) => {
 
 exports.userBookings = catchAsync(async (req, res) => {
   const userId = res.locals.user.id;
-  const events = await Event.find({ user: userId });
+  const events = await Event.find({ user: userId }).sort({
+    dateString: 'asc',
+    eventTime: 1,
+  });
   res.status(200).render('bookings', {
     title: 'User Bookings',
     events,
