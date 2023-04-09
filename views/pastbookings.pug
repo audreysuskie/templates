@@ -7,7 +7,7 @@ block content
       .user-view-content
         span.page-header
           span.page-title= user.name.split(' ')[0]
-            span 's Bookings
+            span 's History
           - const d = new Date();
           - const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
           - const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -17,8 +17,8 @@ block content
           - const count = events.length;
             .booking-count.small= `Showing ${count} of ${count} Bookings`
           if count == 0
-              .booking-row 
-                .booking-subhead No current bookings to display at this time.
+            .booking-row 
+              .booking-subhead No past bookings to display at this time.
           else
             each event in events 
               .booking-row
@@ -28,6 +28,4 @@ block content
                   .booking-text= event.service
                 .booking-subhead Appointment Time: 
                   .booking-text= event.eventTime
-                hr.sectionHR
-            
-                 
+                hr.sectionHR      

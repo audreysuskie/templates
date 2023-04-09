@@ -101,6 +101,12 @@ function getDatesBetween(date1, date2) {
               displayNum +
               ', ' +
               currentYear +
+              '" data-date="' +
+              currentYear +
+              '-' +
+              currentMonth +
+              '-' +
+              displayNum +
               '">' +
               displayNum +
               '</div>';

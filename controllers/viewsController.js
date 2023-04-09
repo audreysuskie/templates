@@ -1,10 +1,12 @@
 const User = require('../models/userModel');
 const Review = require('../models/reviewModel');
 const Event = require('../models/eventModel');
+const Service = require('../models/serviceModel');
 const catchAsync = require('../utils/catchAsync');
 // const AppError = require('../utils/appError');
 // const factory = require('./handlerFactory');
 // const Email = require('../utils/email');
+const today = new Date();
 
 exports.alerts = (req, res, next) => {
   const { alert } = req.query;
@@ -26,14 +28,75 @@ exports.getHomePage = catchAsync(async (req, res) => {
   });
 });
 
-exports.userBookings = catchAsync(async (req, res) => {
-  const userId = res.locals.user.id;
-  const events = await Event.find({ user: userId }).sort({
-    dateString: 'asc',
+exports.services = catchAsync(async (req, res) => {
+  const services = await Service.find();
+  res.status(200).render('services', {
+    title: 'Our Services',
+    services,
+  });
+});
+
+exports.addService = catchAsync(async (req, res) => {
+  res.status(200).render('addservice', {
+    title: 'Add New Service',
+  });
+});
+
+exports.clientList = catchAsync(async (req, res) => {
+  const users = await User.find({ active: { $eq: true } });
+  const users2 = await User.find({ active: { $eq: false } });
+  res.status(200).render('clients', {
+    title: 'Client List',
+    users,
+    users2,
+  });
+});
+
+exports.allBookings = catchAsync(async (req, res) => {
+  const events = await Event.find({ dateString: { $gte: today } }).sort({
+    dateString: 1,
     eventTime: 1,
   });
+  const pastevents = await Event.find({
+    dateString: { $lt: today },
+  }).sort({
+    dateString: -1,
+    eventTime: -1,
+  });
+  res.status(200).render('allbookings', {
+    title: 'Bookings',
+    events,
+    pastevents,
+  });
+});
+
+exports.userBookings = catchAsync(async (req, res) => {
+  const userId = res.locals.user.id;
+  const events = await Event.find({
+    user: userId,
+    dateString: { $gte: today },
+  }).sort({
+    dateString: 1,
+    eventTime: 1,
+  });
+
   res.status(200).render('bookings', {
     title: 'User Bookings',
+    events,
+  });
+});
+
+exports.pastUserBookings = catchAsync(async (req, res) => {
+  const userId = res.locals.user.id;
+  const events = await Event.find({
+    user: userId,
+    dateString: { $lt: today },
+  }).sort({
+    dateString: -1,
+    eventTime: -1,
+  });
+  res.status(200).render('pastbookings', {
+    title: 'User Past Bookings',
     events,
   });
 });

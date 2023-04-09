@@ -1,0 +1,36 @@
+extends base
+
+block content
+  main.main
+    .user-view
+      include _nav
+      .user-view-content
+        span.page-header
+          span.page-title= title        
+            - const d = new Date();
+            - const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            - const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            - const today = day[d.getDay()] + ', ' + month[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+          .page-date.small= `Today is ${today}`
+        .section 
+          - const count = services.length;
+            .booking-count.small= `Showing ${count} of ${count} Services Available`
+          hr.sectionHR
+          if count == 0
+              .booking-row 
+                .booking-subhead No availables services to display at this time.
+          else
+            each service in services 
+              .booking-row
+                .service-subhead= service.title 
+                .booking-text= service.subtitle
+                
+                - const paragraphs = service.description.split('|');
+                each p in paragraphs
+                  .service-text= p
+                if user.role == 'user'
+                  .form-group
+                    button.submit.form-button Book Now
+                hr.sectionHR
+            
+                 

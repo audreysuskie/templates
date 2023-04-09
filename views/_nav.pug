@@ -2,11 +2,11 @@
   - if (user.role === 'user')
     .user-view-nav
       a(href='/services') 
-        .nav-link Our Services
-      a(href='/dashboard') 
-        .nav-link History
+        .nav-link Book Services
       a(href='/bookings') 
-        .nav-link Bookings
+        .nav-link Current Bookings
+      a(href='/pastbookings') 
+        .nav-link Account History
       a(href='/account') 
         .nav-link Account Settings
       a#logout 
@@ -15,9 +15,11 @@
     .admin-view-nav
       a(href='/services') 
         .nav-link Services
-      a(href='/bookings') 
-        .nav-link Bookings
-      a(href='/clientlist') 
+      a(href='/addservice') 
+        .nav-link Add New Service
+      a(href='/allbookings') 
+        .nav-link All Bookings
+      a(href='/clients') 
         .nav-link Client List
       a(href='/account') 
         .nav-link Account Settings

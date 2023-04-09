@@ -2,12 +2,14 @@ import '@babel/polyfill';
 import { login, logout } from './login';
 import { createaccount } from './createaccount';
 import { createevent } from './createevent';
+import { createservice } from './createservice';
 import { forgotpassword } from './forgotpassword';
 import { resetpassword } from './resetpassword';
 import { updateSettings } from './updateSettings';
 import { showAlert } from './alerts';
 
 const bookingForm = document.getElementById('booking-form');
+const serviceForm = document.getElementById('new-service-form');
 const loginForm = document.getElementById('login-form');
 const signupForm = document.getElementById('form-signup');
 const logOutBtn = document.getElementById('logout');
@@ -25,6 +27,16 @@ if (submitButton)
   submitButton.addEventListener('click', (e) => {
     e.target.textContent = 'Submitting...';
   });
+
+if (serviceForm) {
+  serviceForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('service-title').value;
+    const subtitle = document.getElementById('service-subtitle').value;
+    const description = document.getElementById('service-description').value;
+    createservice(title, subtitle, description);
+  });
+}
 
 if (bookingForm) {
   bookingForm.addEventListener('submit', (e) => {

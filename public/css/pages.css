@@ -36,10 +36,10 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  min-height: 70vh;
   height: 100%;
   max-width: 1000px;
   margin: 0rem auto;
-  height: 88.2vh;
   background-color: var(--pagebgcolor);
 }
 
@@ -67,12 +67,23 @@
   align-items: center;
 }
 
-.form-user-photo {
+.form-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 15rem;
+  height: 15rem;
   background-color: white;
   border-radius: 50%;
   border: 0.1rem solid black;
   margin: 1.5rem 2rem 1.5rem 0rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.user-photo {
+  height: 100%;
 }
 
 .sectionHR {
@@ -101,4 +112,23 @@
 
 .booking-count {
   line-height: 150%;
+}
+
+.service-photo {
+  display: block;
+  width: 30%;
+}
+
+.service-subhead {
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+}
+
+.service-text {
+  display: block;
+  line-height: 160%;
+  font-size: 1.4rem;
+  font-weight: lighter;
+  margin: 10px 0px;
 }
