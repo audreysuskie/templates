@@ -99,6 +99,7 @@ if (updateServiceForm) {
       document.getElementById('service-description').value
     );
     form.append('photo', document.getElementById('service-photo').files[0]);
+    form.append('active', document.getElementById('service-active').value);
     updateservice(serviceId, form, 'data');
     window.setTimeout(function () {
       location.reload(true);

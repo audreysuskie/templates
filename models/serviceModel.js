@@ -25,9 +25,9 @@ const serviceSchema = new mongoose.Schema({
 
   photo: { type: String, default: 'default.jpg' },
   active: {
-    type: Boolean,
-    default: true,
-    select: false,
+    type: String,
+    default: 'true',
+    select: 'false',
   },
 });
 

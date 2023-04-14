@@ -13896,6 +13896,7 @@ if (updateServiceForm) {
     form.append('subtitle', document.getElementById('service-subtitle').value);
     form.append('description', document.getElementById('service-description').value);
     form.append('photo', document.getElementById('service-photo').files[0]);
+    form.append('active', document.getElementById('service-active').value);
     (0, _updateservice.updateservice)(serviceId, form, 'data');
     window.setTimeout(function () {
       location.reload(true);
@@ -13998,7 +13999,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57181" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49903" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

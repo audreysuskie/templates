@@ -107,6 +107,15 @@ a.form-link-text {
   margin: 1rem 0rem;
 }
 
+.form-select {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--navtext);
+  padding: 0.5rem;
+  margin: 10px 0px -5px 0px;
+}
+
 input[type='file'] {
   margin: 1rem 0rem;
 }

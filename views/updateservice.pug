@@ -29,6 +29,17 @@ block content
               .page-row
                 img.service-photo(src=`/images/services/${service.photo}`, alt=`Photo for ${service.title}`)
                 input#service-photo.form-upload(type='file', accept='image/*', name='photo', value=`${service.photo}`)
+            .form-group 
+              .page-row  
+                if service.active == 'true'
+                  select.form-select(id='service-active')
+                    option(value='true' selected) Active
+                    option(value='false') Inactive
+                if service.active == 'false'
+                  select.form-select(id='service-active')
+                    option(value='true') Active
+                    option(value='false' selected) Inactive
+            
             .form-group
               button.submit.form-button Update Service
             .form-group 
