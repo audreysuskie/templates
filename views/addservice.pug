@@ -22,7 +22,9 @@ block content
               input#service-subtitle.form-input(type='text', name='subtitle', required)
             .form-group
               label.form-label(for='description') Description
-              textarea#service-description.form-input(name='description', required)
-            
+              textarea#service-description.form-textarea(name='description', required)
+            .form-group 
+              label.form-label(for='photo') Upload Service Photo
+              input#service-photo.form-upload(type='file', accept='image/*', name='photo')
             .form-group
               button.submit.form-button Add Service

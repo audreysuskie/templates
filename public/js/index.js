@@ -3,6 +3,7 @@ import { login, logout } from './login';
 import { createaccount } from './createaccount';
 import { createevent } from './createevent';
 import { createservice } from './createservice';
+import { updateservice, deleteservice } from './updateservice';
 import { forgotpassword } from './forgotpassword';
 import { resetpassword } from './resetpassword';
 import { updateSettings } from './updateSettings';
@@ -10,6 +11,7 @@ import { showAlert } from './alerts';
 
 const bookingForm = document.getElementById('booking-form');
 const serviceForm = document.getElementById('new-service-form');
+const updateServiceForm = document.getElementById('update-service-form');
 const loginForm = document.getElementById('login-form');
 const signupForm = document.getElementById('form-signup');
 const logOutBtn = document.getElementById('logout');
@@ -18,6 +20,7 @@ const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const forgotPasswordForm = document.querySelector('.form--forgotpassword');
 const resetPasswordForm = document.querySelector('.form--resetpassword');
+const deleteService = document.getElementById('delete-service');
 
 const d = new Date();
 const formattedDate =
@@ -28,13 +31,26 @@ if (submitButton)
     e.target.textContent = 'Submitting...';
   });
 
+if (deleteService)
+  deleteService.addEventListener('click', (e) => {
+    const serviceId = document.getElementById('serviceId').value;
+    const form = new FormData();
+    form.append('active', false);
+    deleteservice(serviceId, form, 'data');
+  });
+
 if (serviceForm) {
   serviceForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const title = document.getElementById('service-title').value;
-    const subtitle = document.getElementById('service-subtitle').value;
-    const description = document.getElementById('service-description').value;
-    createservice(title, subtitle, description);
+    const form = new FormData();
+    form.append('title', document.getElementById('service-title').value);
+    form.append('subtitle', document.getElementById('service-subtitle').value);
+    form.append(
+      'description',
+      document.getElementById('service-description').value
+    );
+    form.append('photo', document.getElementById('service-photo').files[0]);
+    createservice(form, 'data');
   });
 }
 
@@ -68,6 +84,25 @@ if (loginForm) {
     const password = document.getElementById('password').value;
     const lastLogin = formattedDate;
     login(email, password, lastLogin);
+  });
+}
+
+if (updateServiceForm) {
+  updateServiceForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const serviceId = document.getElementById('serviceId').value;
+    const form = new FormData();
+    form.append('title', document.getElementById('service-title').value);
+    form.append('subtitle', document.getElementById('service-subtitle').value);
+    form.append(
+      'description',
+      document.getElementById('service-description').value
+    );
+    form.append('photo', document.getElementById('service-photo').files[0]);
+    updateservice(serviceId, form, 'data');
+    window.setTimeout(function () {
+      location.reload(true);
+    }, 1500);
   });
 }
 

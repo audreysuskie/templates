@@ -24,7 +24,19 @@ const serviceSchema = new mongoose.Schema({
   },
 
   photo: { type: String, default: 'default.jpg' },
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
+  },
 });
+
+// serviceSchema.pre('find', function (next) {
+//   this.find({
+//     active: { $ne: false },
+//   });
+//   next();
+// });
 
 serviceSchema.plugin(mongooseDateFormat);
 const Service = mongoose.model('Service', serviceSchema);

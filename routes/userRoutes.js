@@ -12,6 +12,17 @@ router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 router.get('/resetPassword', viewsController.resetPasswordForm);
 
+router.use(authController.protect);
+router.patch('/updateMyPassword', authController.updatePassword);
+
+router.patch(
+  '/updateAccount',
+  authController.isLoggedIn,
+  userController.uploadUserPhoto,
+  userController.resizeUserPhoto,
+  userController.updateUser
+);
+
 router
   .route('/')
   .get(userController.getAllUsers)
@@ -19,7 +30,6 @@ router
 router
   .route('/:id')
   .get(userController.getUser)
-  .patch(userController.updateUser)
   .delete(userController.deleteUser);
 
 module.exports = router;

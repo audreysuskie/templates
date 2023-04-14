@@ -3,16 +3,13 @@ import '@babel/polyfill';
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const createservice = async (title, subtitle, description) => {
+export const createservice = async (data) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: `/api/v1/services/`,
-      data: {
-        title,
-        subtitle,
-        description,
-      },
+      url: `/api/v1/services/createService`,
+      enctype: 'multipart/form-data',
+      data,
     });
 
     if (res.data.status === 'success') {

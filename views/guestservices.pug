@@ -1,0 +1,27 @@
+extends base
+
+block content
+  main.main
+    .page-content
+      
+      .service-section 
+        .service-title-row
+          .page-title= title
+        - const count = services.length;         
+        if count == 0
+          .service-row 
+            .booking-subhead No availables services to display at this time.
+        else
+          each service in services 
+            .service-section
+              .service-row
+                .service-left
+                  .service-subhead= service.title 
+                  .booking-text= service.subtitle
+                    
+                  - const paragraphs = service.description.split('|');
+                  each p in paragraphs
+                    .service-text= p
+
+                .service-right 
+                  img(src=`images/services/${service.photo}`, alt=`Photo for ${service.title}`)

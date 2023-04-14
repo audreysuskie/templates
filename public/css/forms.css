@@ -63,7 +63,7 @@ font-family: 'Quicksand', sans-serif; */
   border-style: hidden;
   border-color: transparent;
   border-image: none;
-  border-bottom: 1.5px solid var(--navtext);
+  border-bottom: 1px solid var(--navtext);
   color: var(--navtext);
 }
 
@@ -71,6 +71,18 @@ font-family: 'Quicksand', sans-serif; */
   outline-style: solid;
   outline-width: 0.2rem;
   outline-color: var(--bgcolor);
+}
+
+.form-textarea {
+  min-height: 270px;
+  font-family: 'Golos Text', sans-serif;
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--navtext);
+  border: 1px solid var(--navtext);
+  outline: none;
+  line-height: 140%;
 }
 
 .form-button {

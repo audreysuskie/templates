@@ -1,0 +1,35 @@
+extends base
+
+block content
+  main.main
+    .user-view
+      include _nav
+      .user-view-content
+        span.page-header
+          .page-title= title
+          - const d = new Date();
+          - const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          - const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+          - const today = day[d.getDay()] + ', ' + month[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+            .page-date.small= `Today is ${today}`
+        .section 
+          form#update-service-form
+            input(type='hidden', id='serviceId', name='serviceId', value=`${service.id}`)
+            .form-group
+              label.form-label(for='title') Title
+              input#service-title.form-input(type='text', name='title', value=`${service.title}`, required)
+            .form-group
+              label.form-label(for='subtitle') Subtitle
+              input#service-subtitle.form-input(type='text', name='subtitle', value=`${service.subtitle}`, required)
+            .form-group
+              label.form-label(for='description') Description
+              textarea#service-description.form-textarea(name='description', required)= service.description
+            .form-group 
+              label.form-label(for='photo') Update Service Photo
+              .page-row
+                img.service-photo(src=`/images/services/${service.photo}`, alt=`Photo for ${service.title}`)
+                input#service-photo.form-upload(type='file', accept='image/*', name='photo', value=`${service.photo}`)
+            .form-group
+              button.submit.form-button Update Service
+            .form-group 
+              a(href='#').page-text#delete-service Delete Service

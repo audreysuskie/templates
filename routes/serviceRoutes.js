@@ -4,6 +4,20 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
+router.post(
+  '/createService',
+  serviceController.uploadPhoto,
+  serviceController.resizePhoto,
+  serviceController.createService
+);
+
+router.patch(
+  '/:id',
+  serviceController.uploadPhoto,
+  serviceController.resizePhoto,
+  serviceController.updateService
+);
+
 router
   .route('/')
   .get(serviceController.getAllServices)
@@ -11,7 +25,6 @@ router
 router
   .route('/:id')
   .get(serviceController.getService)
-  .patch(serviceController.updateService)
   .delete(serviceController.deleteService);
 
 module.exports = router;

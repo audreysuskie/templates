@@ -28,11 +28,39 @@ exports.getHomePage = catchAsync(async (req, res) => {
   });
 });
 
-exports.services = catchAsync(async (req, res) => {
-  const services = await Service.find();
-  res.status(200).render('services', {
+exports.aboutPage = catchAsync(async (req, res) => {
+  res.status(200).render('about', {
+    title: 'About Us',
+  });
+});
+
+exports.faqPage = catchAsync(async (req, res) => {
+  res.status(200).render('faqs', {
+    title: 'Frequently Asked Questions',
+  });
+});
+
+exports.contactPage = catchAsync(async (req, res) => {
+  res.status(200).render('contact', {
+    title: 'Contact Us',
+  });
+});
+
+exports.guestServices = catchAsync(async (req, res) => {
+  const services = await Service.find({ active: { $ne: false } });
+  res.status(200).render('guestservices', {
     title: 'Our Services',
     services,
+  });
+});
+
+exports.services = catchAsync(async (req, res) => {
+  const actives = await Service.find({ active: { $ne: false } });
+  const notactives = await Service.find({ active: false });
+  res.status(200).render('services', {
+    title: 'Services',
+    actives,
+    notactives,
   });
 });
 
@@ -42,8 +70,17 @@ exports.addService = catchAsync(async (req, res) => {
   });
 });
 
+exports.updateService = catchAsync(async (req, res) => {
+  const service = await Service.findById(req.params.serviceId);
+
+  res.status(200).render('updateservice', {
+    title: 'Edit Service',
+    service,
+  });
+});
+
 exports.clientList = catchAsync(async (req, res) => {
-  const users = await User.find({ active: { $eq: true } });
+  const users = await User.find({ active: { $eq: true }, role: 'user' });
   const users2 = await User.find({ active: { $eq: false } });
   res.status(200).render('clients', {
     title: 'Client List',

@@ -6,31 +6,51 @@ block content
       include _nav
       .user-view-content
         span.page-header
-          span.page-title= title        
+          span.page-title= `Active ${title}`       
             - const d = new Date();
             - const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
             - const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
             - const today = day[d.getDay()] + ', ' + month[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
           .page-date.small= `Today is ${today}`
         .section 
-          - const count = services.length;
-            .booking-count.small= `Showing ${count} of ${count} Services Available`
+          - const count = actives.length;
+            .booking-count.small= `Showing ${count} of ${count} Active Services`
           hr.sectionHR
           if count == 0
               .booking-row 
                 .booking-subhead No availables services to display at this time.
           else
-            each service in services 
+            each active in actives 
               .booking-row
-                .service-subhead= service.title 
-                .booking-text= service.subtitle
+                .service-subhead= active.title 
+                .booking-text= active.subtitle
                 
-                - const paragraphs = service.description.split('|');
+                - const paragraphs = active.description.split('|');
                 each p in paragraphs
                   .service-text= p
-                if user.role == 'user'
-                  .form-group
-                    button.submit.form-button Book Now
+
+              a.booking-text(href=`/updateService/${active.id}`) Edit Service
+                hr.sectionHR
+        .page-gap
+        .section 
+          .page-title= `Not Active ${title}`
+          - const inactivecount = notactives.length;
+            .booking-count.small= `Showing ${inactivecount} of ${inactivecount} Inactive Services`
+          hr.sectionHR
+          if inactivecount == 0
+              .booking-row 
+                .booking-subhead No inactive services to display at this time.
+          else
+            each notactive in notactives 
+              .booking-row
+                .service-subhead= notactive.title 
+                .booking-text= notactive.subtitle
+                
+                - const paragraphs = notactive.description.split('|');
+                each p in paragraphs
+                  .service-text= p
+
+              a.booking-text(href=`/updateService/${notactive.id}`) Edit Service
                 hr.sectionHR
             
                  

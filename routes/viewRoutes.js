@@ -14,9 +14,16 @@ router.use(viewsController.alerts);
 // });
 
 router.get('/', authController.isLoggedIn, viewsController.getHomePage);
+router.get('/aboutus', authController.isLoggedIn, viewsController.aboutPage);
+router.get('/faqs', authController.isLoggedIn, viewsController.faqPage);
+router.get('/contact', authController.isLoggedIn, viewsController.contactPage);
 
 router.get('/email', viewsController.checkEmail);
-router.get('/test', viewsController.tempPage);
+router.get(
+  '/guestservices',
+  authController.isLoggedIn,
+  viewsController.guestServices
+);
 router.get(
   '/services',
   authController.isLoggedIn,
@@ -24,6 +31,15 @@ router.get(
   authController.restrictTo('admin', 'user'),
   viewsController.services
 );
+
+router.get(
+  '/updateService/:serviceId',
+  authController.isLoggedIn,
+  authController.protect,
+  authController.restrictTo('admin', 'user'),
+  viewsController.updateService
+);
+
 router.get(
   '/addservice',
   authController.isLoggedIn,

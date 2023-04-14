@@ -29,7 +29,7 @@ block content
                     img.user-photo(src=`images/users/${user.photo}`, alt=`Photo of ${user.name}`)   
                 .column
                   .form-text Use the button below to choose a new photo then click "save settings" to update.           
-                  input.form__upload(type='file', accept='image/*', id='photo', name='photo')
+                  input#photo.form__upload(type='file', accept='image/*', name='photo')
 
             button.submit.form-button Save settings    
 
