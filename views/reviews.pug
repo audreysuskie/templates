@@ -1,7 +1,8 @@
 mixin reviews (review)
   .reviews__card
     .reviews__clientPhoto
-      img.reviews__client-img(src=`/images/users/${review.user.photo}`, alt=`${review.user.name}`)
+      .reviews__client-img
+        img(src=`/images/users/${review.user.photo}`, alt=`${review.user.name}`)
       .reviews-group
         .reviews-title.reviews__user= review.user.name
         .reviews__text= `${review.service} client`

@@ -3,7 +3,7 @@ const Review = require('../models/reviewModel');
 const Event = require('../models/eventModel');
 const Service = require('../models/serviceModel');
 const catchAsync = require('../utils/catchAsync');
-// const AppError = require('../utils/appError');
+const AppError = require('../utils/appError');
 // const factory = require('./handlerFactory');
 // const Email = require('../utils/email');
 const today = new Date();
@@ -21,7 +21,7 @@ exports.checkEmail = (req, res) => {
 };
 
 exports.getHomePage = catchAsync(async (req, res) => {
-  const reviews = await Review.find().limit(3).sort({ createdAt: -1 });
+  const reviews = await Review.find().limit(3).sort({ createdAt: 1 });
   const services = await Service.find().sort({
     title: 1,
   });
@@ -51,16 +51,19 @@ exports.contactPage = catchAsync(async (req, res) => {
 });
 
 exports.guestServices = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' });
   const services = await Service.find({ active: { $ne: 'false' } }).sort({
     title: 1,
   });
   res.status(200).render('guestservices', {
     title: 'Our Services',
     services,
+    pendreviews,
   });
 });
 
 exports.services = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' });
   const actives = await Service.find({ active: { $ne: 'false' } }).sort({
     title: 1,
   });
@@ -69,35 +72,43 @@ exports.services = catchAsync(async (req, res) => {
     title: 'Services',
     actives,
     notactives,
+    pendreviews,
   });
 });
 
 exports.addService = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' });
   res.status(200).render('addservice', {
     title: 'Add New Service',
+    pendreviews,
   });
 });
 
 exports.updateService = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' });
   const service = await Service.findById(req.params.serviceId);
 
   res.status(200).render('updateservice', {
     title: 'Edit Service',
     service,
+    pendreviews,
   });
 });
 
 exports.clientList = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' });
   const users = await User.find({ active: { $eq: true }, role: 'user' });
   const users2 = await User.find({ active: { $eq: false } });
   res.status(200).render('clients', {
     title: 'Client List',
     users,
     users2,
+    pendreviews,
   });
 });
 
 exports.allBookings = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' });
   const events = await Event.find({ dateString: { $gte: today } }).sort({
     dateString: 1,
     eventTime: 1,
@@ -112,6 +123,7 @@ exports.allBookings = catchAsync(async (req, res) => {
     title: 'Bookings',
     events,
     pastevents,
+    pendreviews,
   });
 });
 
@@ -120,15 +132,33 @@ exports.userReviews = catchAsync(async (req, res) => {
   const reviews = await Review.find({
     user: userId,
   });
+  const pendreviews = await Review.find({ status: 'pending' });
 
   res.status(200).render('userreviews', {
     title: 'Reviews',
+    reviews,
+    pendreviews,
+  });
+});
+
+exports.allReviews = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' }).sort({
+    createdAt: -1,
+  });
+  const reviews = await Review.find({ status: 'published' }).sort({
+    createdAt: -1,
+  });
+
+  res.status(200).render('allreviews', {
+    title: 'Reviews',
+    pendreviews,
     reviews,
   });
 });
 
 exports.userBookings = catchAsync(async (req, res) => {
   const userId = res.locals.user.id;
+  const pendreviews = await Review.find({ status: 'pending' });
   const events = await Event.find({
     user: userId,
     dateString: { $gte: today },
@@ -140,11 +170,16 @@ exports.userBookings = catchAsync(async (req, res) => {
   res.status(200).render('bookings', {
     title: 'User Bookings',
     events,
+    pendreviews,
   });
 });
 
-exports.pastUserBookings = catchAsync(async (req, res) => {
+exports.accountHistory = catchAsync(async (req, res) => {
   const userId = res.locals.user.id;
+  const events = await Event.find({
+    user: userId,
+    dateString: { $gte: today },
+  });
   const reviews = await Review.find({
     user: userId,
   });
@@ -153,7 +188,16 @@ exports.pastUserBookings = catchAsync(async (req, res) => {
   })
     .limit(2)
     .sort({ createdAt: -1 });
-  const events = await Event.find({
+  const currents = await Event.find({
+    user: userId,
+    dateString: { $gte: today },
+  })
+    .limit(1)
+    .sort({
+      dateString: 1,
+      eventTime: 1,
+    });
+  const pastevents = await Event.find({
     user: userId,
     dateString: { $lt: today },
   }).sort({
@@ -163,18 +207,22 @@ exports.pastUserBookings = catchAsync(async (req, res) => {
 
   res.status(200).render('accounthistory', {
     title: 'User Account History',
+    currents,
     events,
+    pastevents,
     reviews,
     reviews2,
   });
 });
 
-exports.getAccount = (req, res) => {
+exports.getAccount = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' });
   res.status(200).render('account', {
     title: 'Your Account',
     User,
+    pendreviews,
   });
-};
+});
 
 exports.getLoginForm = (req, res) => {
   res.status(200).render('login', {
@@ -204,10 +252,4 @@ exports.resetPasswordForm = (req, res) => {
   } else {
     res.redirect('/');
   }
-};
-
-exports.tempPage = (req, res) => {
-  res.status(200).render('test', {
-    title: 'Event Calendar',
-  });
 };

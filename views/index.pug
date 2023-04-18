@@ -29,6 +29,12 @@ block content
             img.item-logo(src='/images/voluma.png', title='Adds volume to cheek area', value='Cheeks', name='About 2 years')
         
       .home-section
+        .section-heading.scrollAni Testimonials
+        .reviews_grid.scrollAni
+          each review in reviews
+            +reviews(review)
+
+      .home-section.white
         .section-heading Don't wait! Book Your Service Today.
         if user
           a.home-book-button(href='#').btn.login-button Book Now
@@ -39,11 +45,7 @@ block content
             a(href='/signup') Create one now
             span  to book an appointment!
 
-      .home-section.white
-        .section-heading.scrollAni Testimonials
-        .reviews_grid.scrollAni
-          each review in reviews
-            +reviews(review)
+
 
   include _modal
   include _homebookmodal

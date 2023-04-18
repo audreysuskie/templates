@@ -4,6 +4,23 @@ $(document).ready(function () {
     $('.homemodal-wrapper').scrollTop();
   });
 
+  $('.publish-review').click(function () {
+    $('.publishmodal-wrapper').css('display', 'flex');
+    var id = $(this).data('id');
+    var service = $(this).data('service');
+    var rating = $(this).data('rating');
+    var review = $(this).data('review');
+    var status = $(this).data('status');
+    var user = $(this).data('user');
+    $('#reviewId').attr('value', id);
+    $('#service').text(service);
+    $('#rating').text(rating);
+    $('#review').text(review);
+    $('#user').text(user);
+    $('#status').text("'" + status + "'");
+    $('.publishmodal-wrapper').scrollTop();
+  });
+
   $('.book-now-button').click(function () {
     $('.modal-wrapper').css('display', 'flex');
     var id = $(this).data('id');
@@ -44,11 +61,13 @@ $(document).ready(function () {
   });
 
   $('.create-review').click(function () {
+    var event = $(this).data('id');
     var service = $(this).data('service');
     var date = $(this).data('date');
     $('#service-text').text(service);
     $('#service-date').text(date);
     $('#service').attr('value', service);
+    $('#event').attr('value', event);
     $('.modal-wrapper').css('display', 'flex');
     $('.modal-wrapper').scrollTop();
   });
@@ -58,9 +77,11 @@ $(document).ready(function () {
     var date = $(this).data('date');
     var rating = $(this).data('rating');
     var review = $(this).data('review');
+    var user = $(this).data('user');
     var id = $(this).data('id');
     $('#review-service').text(service);
     $('#review-date').text(date);
+    $('#review-user').text(user);
     $('#review-rating').text(rating + ' out of 5');
     $('#review-review').text(review);
     $('#deleteId').attr('value', id);
@@ -74,9 +95,12 @@ $(document).ready(function () {
     $('#event-name').text('');
     $('#event-email').text('');
     $('#event-service').text('');
+    $('#service').attr('value', '');
+    $('#event').attr('value', '');
     $('#cancelId').attr('value', '');
     $('.modal-wrapper').css('display', 'none');
     $('.homemodal-wrapper').css('display', 'none');
+    $('.publishmodal-wrapper').css('display', 'none');
   });
 
   // Animation

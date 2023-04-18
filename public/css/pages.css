@@ -23,6 +23,10 @@
   color: var(--navtext);
 }
 
+.nav-link > span {
+  margin-left: 0.4rem;
+}
+
 .page-header {
   display: flex;
   flex-direction: row;
@@ -76,6 +80,7 @@
 }
 
 .form-photo {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,9 +93,12 @@
   margin: 1.5rem 2rem 1.5rem 0rem;
   overflow: hidden;
   text-align: center;
+  object-fit: contain;
 }
 
 .user-photo {
+  position: absolute;
+  top: 0;
   height: 100%;
 }
 

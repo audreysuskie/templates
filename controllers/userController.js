@@ -3,6 +3,7 @@ const sharp = require('sharp');
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
+const AppError = require('../utils/appError');
 
 const multerStorage = multer.memoryStorage();
 
@@ -34,7 +35,6 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
   //Reads uploaded file from memory
   await sharp(req.file.buffer)
-    .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
     .toFile(`public/images/users/${req.file.filename}`);

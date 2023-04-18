@@ -31,6 +31,11 @@ const eventSchema = new mongoose.Schema(
       required: [true, 'You must be logged in to book a service.'],
     },
 
+    review: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Review',
+    },
+
     createdAt: {
       type: Date,
       default: Date.now(),
@@ -51,6 +56,11 @@ eventSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'service',
     select: 'title',
+  });
+
+  this.populate({
+    path: 'review',
+    select: 'rating review service',
   });
 
   next();

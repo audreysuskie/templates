@@ -1,5 +1,6 @@
 .modal-wrapper,
-.homemodal-wrapper {
+.homemodal-wrapper,
+.publishmodal-wrapper {
   display: none;
   position: fixed;
   top: 0;
@@ -99,13 +100,13 @@
   background-color: var(--pagetitle);
   color: white;
   padding: 10px;
-  font-size: 2rem;
+  font-size: 1.8rem;
   cursor: pointer;
   border-width: 0;
   border-style: none;
-  border-color: none;
   border-image: none;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .confirm:hover {

@@ -19,6 +19,10 @@
   line-height: 50px;
 }
 
+.calendarTable {
+  font-size: 1.5rem;
+}
+
 .titleRow {
   position: relative;
   height: auto;

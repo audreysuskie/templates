@@ -1,0 +1,22 @@
+.publishmodal-wrapper
+  .modal-container 
+    #event-close &#x2715
+    .modal-content
+      .page-title Publish Review?
+      hr.sectionHR
+      form#publish-review
+        input#reviewId(type='hidden', value='')
+        .booking-row
+          .modal-subhead Service Reviewed: 
+          .modal-subtext#service
+          .modal-subhead Rating: 
+          .modal-subtext#rating
+          .modal-subhead Review: 
+          .modal-subtext#review
+          .modal-subhead Reviewed By: 
+          .modal-subtext#user
+
+        .confirm-row
+          button.submit.confirm Yes, publish this review
+          a.confirm#confirm-cancel Keep status as 
+            span#status

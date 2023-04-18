@@ -56,6 +56,13 @@ router.get(
   viewsController.clientList
 );
 router.get('/reviews', authController.isLoggedIn, viewsController.userReviews);
+router.get(
+  '/allreviews',
+  authController.isLoggedIn,
+  authController.protect,
+  authController.restrictTo('admin'),
+  viewsController.allReviews
+);
 
 router.get(
   '/allbookings',
@@ -70,7 +77,7 @@ router.get(
 router.get(
   '/history',
   authController.isLoggedIn,
-  viewsController.pastUserBookings
+  viewsController.accountHistory
 );
 router.get('/forgotpassword', viewsController.forgotPasswordForm);
 router.get('/account', authController.isLoggedIn, viewsController.getAccount);

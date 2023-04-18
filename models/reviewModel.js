@@ -29,6 +29,20 @@ const reviewSchema = new mongoose.Schema(
       ref: 'User',
       required: [true, 'You must be logged in to leave a review.'],
     },
+    event: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Event',
+      required: [true, 'A review must be associated with a past appointment.'],
+    },
+    status: {
+      type: String,
+      enum: {
+        values: ['pending', 'published', 'unpublished'],
+        default: 'pending',
+        message:
+          'A review must have a status of pending, published, or unpublished',
+      },
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -41,6 +55,13 @@ reviewSchema.pre(/^find/, function (next) {
     path: 'user',
     select: 'name photo',
   });
+  next();
+});
+reviewSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'event',
+    select: '-service -user',
+  });
 
   next();
 });
@@ -50,7 +71,7 @@ reviewSchema.pre(/^find/, function (next) {
 //   next();
 // });
 
-//reviewSchema.index({ user: 1 }, { unique: true });
+reviewSchema.index({ event: 1 }, { unique: true });
 
 const Review = mongoose.model('Review', reviewSchema);
 

@@ -15,28 +15,51 @@ block content
         hr.sectionHR
         .section 
           .page-subtitle= user.name.split(' ')[0]
-            span 's Past Bookings
+            span 's Current Bookings
           - const count = events.length;
-            .booking-count.small= `Showing ${count} of ${count} Bookings`
-          if count == 0
+          - const curcount = currents.length;
+          - const pastcount = pastevents.length;
+            .booking-count.small= `Showing ${curcount} of ${count} Current Bookings`
+          if curcount == 0
+            .booking-row 
+              .booking-subhead No current bookings to display at this time.
+          else
+            each current in currents 
+              .booking-row
+                .booking-header
+                  .booking-subhead= current.eventDate 
+                  .booking-text= `Time: ${current.eventTime}`
+                .booking-subhead Service Booked: 
+                  .booking-text= current.service.title 
+          if count > 1       
+            .cancel-booking-row
+              a.form-text(href='/bookings') See all current bookings                
+                    
+        hr.sectionHR
+        .section 
+          .page-subtitle= user.name.split(' ')[0]
+            span 's Past Bookings
+          
+            .booking-count.small= `Showing ${pastcount} of ${pastcount} Bookings`
+          if pastcount == 0
             .booking-row 
               .booking-subhead No past bookings to display at this time.
           else
-            each event in events 
+            each pastevent in pastevents 
               .booking-row
                 .booking-header
-                  .booking-subhead= event.eventDate 
-                  .booking-text= `Time: ${event.eventTime}`
+                  .booking-subhead= pastevent.eventDate 
+                  .booking-text= `Time: ${pastevent.eventTime}`
                 .booking-subhead Service Booked: 
-                  .booking-text= event.service.title  
+                  .booking-text= pastevent.service.title  
                 .cancel-booking-row
                   a.create-review(href='#', 
-                  data-date=`${event.eventDate}`, 
-                  data-time=`${event.eventTime}`,
-                  data-service=`${event.service.title}`,
-                  data-id=`${event.id}`,
+                  data-date=`${pastevent.eventDate}`, 
+                  data-time=`${pastevent.eventTime}`,
+                  data-service=`${pastevent.service.title}`,
+                  data-id=`${pastevent.id}`,
                   ) Leave a Review                
-                hr.sectionHR    
+                    
         hr.sectionHR
         .section 
           .page-subtitle= user.name.split(' ')[0]
@@ -61,6 +84,6 @@ block content
                 hr.sectionHR 
           if reviewcount > 2
             .cancel-booking-row
-              a.form-text(href='/reviews') See more reviews
+              a.form-text(href='/reviews') See all reviews
 
   include _reviewmodal  

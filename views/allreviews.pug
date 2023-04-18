@@ -1,0 +1,97 @@
+extends base
+
+block content
+  main.main
+    .user-view
+      include _nav
+      .user-view-content
+        span.page-header
+          .page-title= `Pending ${title}`
+          - const d = new Date();
+          - const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          - const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+          - const today = day[d.getDay()] + ', ' + month[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+            .page-date.small= `Today is ${today}`
+        .section 
+          - const count = reviews.length;
+          - const pendcount = pendreviews.length;
+            .booking-count.small= `Showing ${pendcount} of ${pendcount} Pending Reviews`
+
+          if count == 0
+            .booking-row 
+              .booking-subhead No published reviews to display at this time.
+          
+          if pendcount == 0
+            .booking-row 
+              .booking-subhead No pending reviews to display at this time.
+
+          else
+            each pendreview in pendreviews
+              .booking-row
+                .booking-subhead Service Reviewed: 
+                  .booking-text= pendreview.service
+                .booking-subhead Rating: 
+                  .booking-text= pendreview.rating  
+                .booking-subhead Review: 
+                  .booking-text= pendreview.review  
+                .booking-subhead Reviewed By: 
+                  .booking-text= pendreview.user.name  
+                .booking-subhead Date Reviewed: 
+                  .booking-text= pendreview.createdAt  
+                .booking-subhead Status: 
+                  .booking-text= pendreview.status
+                    | 
+                  button.publish-review.booking-text.small(href='#', 
+                  data-service=`${pendreview.service}`, 
+                  data-rating=`${pendreview.rating}`,
+                  data-review=`${pendreview.review}`,
+                  data-user=`${pendreview.user.name}`,
+                  data-status=`${pendreview.status}`,
+                  data-id=`${pendreview.id}`,
+                  ) PUBLISH   
+                .cancel-booking-row
+                a.delete-review(href='#', 
+                  data-service=`${pendreview.service}`, 
+                  data-event=`${pendreview.event}`, 
+                  data-rating=`${pendreview.rating}`,
+                  data-review=`${pendreview.review}`,
+                  data-user=`${pendreview.user.name}`,
+                  data-date=`${pendreview.createdAt}`,
+                  data-id=`${pendreview.id}`,
+                  ) Delete Review               
+                hr.sectionHR   
+
+          .booking-row
+            .page-title= `Published ${title}`
+            .booking-count.small= `Showing ${count} of ${count} Published Reviews`  
+          each review in reviews
+            .booking-row
+              .booking-subhead Service Reviewed: 
+                .booking-text= review.service
+              .booking-subhead Rating: 
+                .booking-text= review.rating  
+              .booking-subhead Review: 
+                .booking-text= review.review  
+              .booking-subhead Reviewed By: 
+                .booking-text= review.user.name  
+              .booking-subhead Date Reviewed: 
+                .booking-text= review.createdAt  
+              .booking-subhead Status: 
+                .booking-text= review.status
+                  
+              .cancel-booking-row
+              a.delete-review(href='#', 
+                data-service=`${review.service}`, 
+                data-event=`${review.event}`, 
+                data-rating=`${review.rating}`,
+                data-review=`${review.review}`,
+                data-user=`${review.user.name}`,
+                data-date=`${review.createdAt}`,
+                data-id=`${review.id}`,
+                ) Delete Review               
+              hr.sectionHR   
+
+         
+
+  include _deletereviewmodal
+  include _publishreviewmodal

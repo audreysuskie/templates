@@ -6,6 +6,7 @@ import { deleteevent } from './deleteevent';
 import { createservice } from './createservice';
 import { createreview } from './createreview';
 import { deletereview } from './createreview';
+import { updatereview } from './createreview';
 import { updateservice, deleteservice } from './updateservice';
 import { forgotpassword } from './forgotpassword';
 import { resetpassword } from './resetpassword';
@@ -87,7 +88,8 @@ if (createReview) {
     const service = document.getElementById('service').value;
     const rating = document.querySelector('input[name="rating"]:checked').value;
     const review = document.getElementById('review').value;
-    createreview(service, rating, review);
+    const event = document.getElementById('event').value;
+    createreview(service, rating, review, event);
   });
 }
 
@@ -194,6 +196,15 @@ const close = document.getElementById('close');
 const modal = document.querySelector('.modal-wrapper');
 const cancel = document.getElementById('delete-event');
 const deleteReview = document.getElementById('delete-review');
+const publishReview = document.getElementById('publish-review');
+
+if (publishReview)
+  publishReview.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('reviewId').value;
+    const status = 'published';
+    updatereview(status, id);
+  });
 
 if (deleteReview)
   deleteReview.addEventListener('submit', (e) => {

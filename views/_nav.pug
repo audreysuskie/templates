@@ -19,11 +19,17 @@
       a(href='/account') 
         .nav-link Account Settings
       a(href='/services') 
-        .nav-link All Services
+        .nav-link Edit Services
       a(href='/addservice') 
         .nav-link Add New Service
       a(href='/allbookings') 
         .nav-link All Bookings
+      - const pendcount = pendreviews.length;  
+      a(href='/allreviews') 
+        .nav-link Client Reviews
+          if pendcount > 0
+            | 
+            span.small= `${pendcount} pending`
       a(href='/clients') 
         .nav-link Client List
       hr.sectionHR

@@ -13089,7 +13089,7 @@ exports.createservice = createservice;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deletereview = exports.createreview = void 0;
+exports.updatereview = exports.deletereview = exports.createreview = void 0;
 require("core-js/modules/es6.array.copy-within.js");
 require("core-js/modules/es6.array.fill.js");
 require("core-js/modules/es6.array.filter.js");
@@ -13230,7 +13230,7 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var createreview = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(service, rating, review) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(service, rating, review, event) {
     var res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
@@ -13243,7 +13243,8 @@ var createreview = /*#__PURE__*/function () {
             data: {
               service: service,
               rating: rating,
-              review: review
+              review: review,
+              event: event
             }
           });
         case 3:
@@ -13267,13 +13268,13 @@ var createreview = /*#__PURE__*/function () {
       }
     }, _callee, null, [[0, 7]]);
   }));
-  return function createreview(_x, _x2, _x3) {
+  return function createreview(_x, _x2, _x3, _x4) {
     return _ref.apply(this, arguments);
   };
 }();
 exports.createreview = createreview;
-var deletereview = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(eventId) {
+var updatereview = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(status, id) {
     var res;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
@@ -13281,16 +13282,18 @@ var deletereview = /*#__PURE__*/function () {
           _context2.prev = 0;
           _context2.next = 3;
           return (0, _axios.default)({
-            method: 'DELETE',
-            url: "/api/v1/reviews/".concat(eventId),
-            data: null
+            method: 'PATCH',
+            url: "/api/v1/reviews/".concat(id),
+            data: {
+              status: status
+            }
           });
         case 3:
           res = _context2.sent;
-          if (res.status === 204) {
-            (0, _alerts.showAlert)('success', 'Your review has been deleted.');
+          if (res.data.status === 'success') {
+            (0, _alerts.showAlert)('success', 'The review has been published.');
             window.setTimeout(function () {
-              location.assign('/reviews');
+              location.assign('/allreviews');
             }, 1500);
           }
           _context2.next = 10;
@@ -13306,8 +13309,47 @@ var deletereview = /*#__PURE__*/function () {
       }
     }, _callee2, null, [[0, 7]]);
   }));
-  return function deletereview(_x4) {
+  return function updatereview(_x5, _x6) {
     return _ref2.apply(this, arguments);
+  };
+}();
+exports.updatereview = updatereview;
+var deletereview = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(eventId) {
+    var res;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
+        case 0:
+          _context3.prev = 0;
+          _context3.next = 3;
+          return (0, _axios.default)({
+            method: 'DELETE',
+            url: "/api/v1/reviews/".concat(eventId),
+            data: null
+          });
+        case 3:
+          res = _context3.sent;
+          if (res.status === 204) {
+            (0, _alerts.showAlert)('success', 'Your review has been deleted.');
+            window.setTimeout(function () {
+              location.assign('/reviews');
+            }, 1500);
+          }
+          _context3.next = 10;
+          break;
+        case 7:
+          _context3.prev = 7;
+          _context3.t0 = _context3["catch"](0);
+          //console.log(err);
+          (0, _alerts.showAlert)('error', _context3.t0.response.data.message);
+        case 10:
+        case "end":
+          return _context3.stop();
+      }
+    }, _callee3, null, [[0, 7]]);
+  }));
+  return function deletereview(_x7) {
+    return _ref3.apply(this, arguments);
   };
 }();
 exports.deletereview = deletereview;
@@ -14301,7 +14343,8 @@ if (createReview) {
     var service = document.getElementById('service').value;
     var rating = document.querySelector('input[name="rating"]:checked').value;
     var review = document.getElementById('review').value;
-    (0, _createreview.createreview)(service, rating, review);
+    var event = document.getElementById('event').value;
+    (0, _createreview.createreview)(service, rating, review, event);
   });
 }
 if (signupForm) {
@@ -14409,6 +14452,13 @@ var close = document.getElementById('close');
 var modal = document.querySelector('.modal-wrapper');
 var cancel = document.getElementById('delete-event');
 var deleteReview = document.getElementById('delete-review');
+var publishReview = document.getElementById('publish-review');
+if (publishReview) publishReview.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var id = document.getElementById('reviewId').value;
+  var status = 'published';
+  (0, _createreview.updatereview)(status, id);
+});
 if (deleteReview) deleteReview.addEventListener('submit', function (e) {
   e.preventDefault();
   var deleteId = document.getElementById('deleteId').value;

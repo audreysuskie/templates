@@ -28,10 +28,14 @@ block content
                 .booking-subhead Service Booked: 
                   .booking-text= event.service.title  
                 .cancel-booking-row
-                  a.cancel-booking(href='#', 
+                  a.cancel-booking(href='#',
                   data-date=`${event.eventDate}`, 
                   data-time=`${event.eventTime}`,
                   data-service=`${event.service.title}`,
+                  data-name=`${user.name}`,
+                  data-email=`${user.email}`,
                   data-id=`${event.id}`,
                   ) Cancel Appointment                 
-                hr.sectionHR               
+                hr.sectionHR         
+
+  include _eventmodal               

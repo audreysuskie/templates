@@ -9,7 +9,12 @@ const handleDuplicateFieldsDB = (err) => {
   //const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
   //console.log(value);
 
-  const message = `The email you entered is already subscribed. Please try another email.`;
+  const message = `The email you entered is already being used by another account. Please try another email.`;
+  return new AppError(message, 400);
+};
+
+const handleDuplicateReviews = (err) => {
+  const message = `You've already left a review for this appointment. Please select another appointment to review.`;
   return new AppError(message, 400);
 };
 
@@ -97,7 +102,8 @@ module.exports = (err, req, res, next) => {
     error.message = err.message;
 
     if (error.name === 'CastError') error = handleCastErrorDB(error);
-    if (error.code === 11000) error = handleDuplicateFieldsDB(error);
+    if (error.code === 11000) error = handleDuplicateReviews(error);
+    //if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     if (error.name === 'ValidationError')
       error = handleValidationErrorDB(error);
     if (error.name === 'JsonWebTokenError') error = handleJWTError();
