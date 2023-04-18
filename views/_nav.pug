@@ -1,18 +1,23 @@
 .nav-wrapper
   - if (user.role === 'user')
     .user-view-nav
+      a(href='/account') 
+        .nav-link Account Settings
+      a(href='/history') 
+        .nav-link Account History
       a(href='/guestservices') 
         .nav-link Book Services
       a(href='/bookings') 
         .nav-link Current Bookings
-      a(href='/pastbookings') 
-        .nav-link Account History
-      a(href='/account') 
-        .nav-link Account Settings
+      a(href='/reviews') 
+        .nav-link Your Reviews
+      hr.sectionHR
       a#logout 
         .nav-link Log Out
   - if (user.role === 'admin')
     .admin-view-nav
+      a(href='/account') 
+        .nav-link Account Settings
       a(href='/services') 
         .nav-link All Services
       a(href='/addservice') 
@@ -21,7 +26,6 @@
         .nav-link All Bookings
       a(href='/clients') 
         .nav-link Client List
-      a(href='/account') 
-        .nav-link Account Settings
+      hr.sectionHR
       a#logout 
         .nav-link Log Out

@@ -21,30 +21,39 @@ block content
           else
             each event in events 
               .booking-row
-                .booking-subhead Name: 
+                .booking-header
+                  .booking-subhead= event.eventDate 
+                  .booking-text= event.eventTime
+                .booking-subhead Client Name: 
                   .booking-text= event.user.name
-                .booking-subhead Email: 
+                .booking-subhead Client Email: 
                   .booking-text= event.user.email
                 .booking-subhead Service Booked: 
-                  .booking-text= event.service
-                .booking-subhead Appointment Date: 
-                  .booking-text= event.eventDate
-                .booking-subhead Appointment Time: 
-                  .booking-text= event.eventTime
+                  .booking-text= event.service.title  
+                .cancel-booking-row
+                  a.cancel-booking(href='#', 
+                  data-date=`${event.eventDate}`, 
+                  data-time=`${event.eventTime}`,
+                  data-name=`${event.user.name}`, 
+                  data-email=`${event.user.email}`, 
+                  data-service=`${event.service.title}`,
+                  data-id=`${event.id}`,
+                  ) Cancel Appointment                 
                 hr.sectionHR
-            .page-title= `Past ${title}`
-            each pastevent in pastevents 
-              .booking-row
-                .booking-subhead Name: 
-                  .booking-text= pastevent.user.name
-                .booking-subhead Email: 
-                  .booking-text= pastevent.user.email
-                .booking-subhead Service Booked: 
-                  .booking-text= pastevent.service
-                .booking-subhead Appointment Date: 
-                  .booking-text= pastevent.eventDate
-                .booking-subhead Appointment Time: 
-                  .booking-text= pastevent.eventTime
-                hr.sectionHR
-            
-                 
+
+            details 
+              summary.page-subtitle= `Past ${title}`
+              each pastevent in pastevents 
+                .booking-row
+                  .booking-header
+                    .booking-subhead= pastevent.eventDate 
+                    .booking-text= pastevent.eventTime
+                  .booking-subhead Client Name: 
+                    .booking-text= pastevent.user.name
+                  .booking-subhead Client Email: 
+                    .booking-text= pastevent.user.email
+                  .booking-subhead Service Booked: 
+                    .booking-text= pastevent.service.title                   
+                  hr.sectionHR   
+
+  include _eventmodal         

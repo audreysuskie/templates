@@ -1,0 +1,66 @@
+extends base
+
+block content
+  main.main
+    .user-view
+      include _nav
+      .user-view-content
+        span.page-header
+          .page-title Account History
+          - const d = new Date();
+          - const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          - const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+          - const today = day[d.getDay()] + ', ' + month[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+            .page-date.small= `Today is ${today}`
+        hr.sectionHR
+        .section 
+          .page-subtitle= user.name.split(' ')[0]
+            span 's Past Bookings
+          - const count = events.length;
+            .booking-count.small= `Showing ${count} of ${count} Bookings`
+          if count == 0
+            .booking-row 
+              .booking-subhead No past bookings to display at this time.
+          else
+            each event in events 
+              .booking-row
+                .booking-header
+                  .booking-subhead= event.eventDate 
+                  .booking-text= `Time: ${event.eventTime}`
+                .booking-subhead Service Booked: 
+                  .booking-text= event.service.title  
+                .cancel-booking-row
+                  a.create-review(href='#', 
+                  data-date=`${event.eventDate}`, 
+                  data-time=`${event.eventTime}`,
+                  data-service=`${event.service.title}`,
+                  data-id=`${event.id}`,
+                  ) Leave a Review                
+                hr.sectionHR    
+        hr.sectionHR
+        .section 
+          .page-subtitle= user.name.split(' ')[0]
+            span 's Reviews
+          - const reviewcount = reviews.length;
+          - const reviewcount2 = reviews2.length;
+            .booking-count.small= `Showing ${reviewcount2} of ${reviewcount} Reviews`
+          if reviewcount == 0
+            .booking-row 
+              .booking-subhead No reviews to display at this time.
+          else
+            each review2 in reviews2 
+              .booking-row
+                .booking-subhead Service Reviewed: 
+                  .booking-text= review2.service
+                .booking-subhead Rating: 
+                  .booking-text= review2.rating  
+                .booking-subhead Review: 
+                  .booking-text= review2.review  
+                .booking-subhead Date Reviewed: 
+                  .booking-text= review2.createdAt               
+                hr.sectionHR 
+          if reviewcount > 2
+            .cancel-booking-row
+              a.form-text(href='/reviews') See more reviews
+
+  include _reviewmodal  

@@ -119,3 +119,7 @@ a.form-link-text {
 input[type='file'] {
   margin: 1rem 0rem;
 }
+
+summary {
+  cursor: pointer;
+}

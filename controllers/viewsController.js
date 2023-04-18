@@ -21,10 +21,14 @@ exports.checkEmail = (req, res) => {
 };
 
 exports.getHomePage = catchAsync(async (req, res) => {
-  const reviews = await Review.find().limit(3);
+  const reviews = await Review.find().limit(3).sort({ createdAt: -1 });
+  const services = await Service.find().sort({
+    title: 1,
+  });
   res.status(200).render('index', {
     title: 'Home Page',
     reviews,
+    services,
   });
 });
 
@@ -47,7 +51,9 @@ exports.contactPage = catchAsync(async (req, res) => {
 });
 
 exports.guestServices = catchAsync(async (req, res) => {
-  const services = await Service.find({ active: { $ne: 'false' } });
+  const services = await Service.find({ active: { $ne: 'false' } }).sort({
+    title: 1,
+  });
   res.status(200).render('guestservices', {
     title: 'Our Services',
     services,
@@ -55,7 +61,9 @@ exports.guestServices = catchAsync(async (req, res) => {
 });
 
 exports.services = catchAsync(async (req, res) => {
-  const actives = await Service.find({ active: { $ne: 'false' } });
+  const actives = await Service.find({ active: { $ne: 'false' } }).sort({
+    title: 1,
+  });
   const notactives = await Service.find({ active: 'false' });
   res.status(200).render('services', {
     title: 'Services',
@@ -107,6 +115,18 @@ exports.allBookings = catchAsync(async (req, res) => {
   });
 });
 
+exports.userReviews = catchAsync(async (req, res) => {
+  const userId = res.locals.user.id;
+  const reviews = await Review.find({
+    user: userId,
+  });
+
+  res.status(200).render('userreviews', {
+    title: 'Reviews',
+    reviews,
+  });
+});
+
 exports.userBookings = catchAsync(async (req, res) => {
   const userId = res.locals.user.id;
   const events = await Event.find({
@@ -125,6 +145,14 @@ exports.userBookings = catchAsync(async (req, res) => {
 
 exports.pastUserBookings = catchAsync(async (req, res) => {
   const userId = res.locals.user.id;
+  const reviews = await Review.find({
+    user: userId,
+  });
+  const reviews2 = await Review.find({
+    user: userId,
+  })
+    .limit(2)
+    .sort({ createdAt: -1 });
   const events = await Event.find({
     user: userId,
     dateString: { $lt: today },
@@ -132,9 +160,12 @@ exports.pastUserBookings = catchAsync(async (req, res) => {
     dateString: -1,
     eventTime: -1,
   });
-  res.status(200).render('pastbookings', {
-    title: 'User Past Bookings',
+
+  res.status(200).render('accounthistory', {
+    title: 'User Account History',
     events,
+    reviews,
+    reviews2,
   });
 });
 

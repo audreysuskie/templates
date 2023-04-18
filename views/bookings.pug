@@ -22,12 +22,16 @@ block content
           else
             each event in events 
               .booking-row
-                .booking-subhead Appointment Date: 
-                  .booking-text= event.eventDate
-                .booking-subhead Service: 
-                  .booking-text= event.service
-                .booking-subhead Appointment Time: 
+                .booking-header
+                  .booking-subhead= event.eventDate 
                   .booking-text= event.eventTime
-                hr.sectionHR
-            
-                 
+                .booking-subhead Service Booked: 
+                  .booking-text= event.service.title  
+                .cancel-booking-row
+                  a.cancel-booking(href='#', 
+                  data-date=`${event.eventDate}`, 
+                  data-time=`${event.eventTime}`,
+                  data-service=`${event.service.title}`,
+                  data-id=`${event.id}`,
+                  ) Cancel Appointment                 
+                hr.sectionHR               

@@ -1,0 +1,30 @@
+.modal-wrapper
+  .modal-container 
+    #event-close &#x2715
+    .modal-content
+      span.page-subtitle Leave A Review for your 
+        #service-text
+      span.page-subtitle  Appointment on 
+        #service-date
+
+      form#create-review
+        input#service(type='hidden', value='')
+        .form-group
+          label.form-label(for='rating') Your Rating
+          span.star-group
+            input.rating.rating-input(type='radio', name='rating', id='rating1', value='1')
+            label(for='rating1') 1
+            input.rating.rating-input(type='radio', name='rating', id='rating2', value='2')
+            label(for='rating2') 2
+            input.rating.rating-input(type='radio', name='rating', id='rating3', value='3')
+            label(for='rating3') 3
+            input.rating.rating-input(type='radio', name='rating', id='rating4', value='4')
+            label(for='rating4') 4
+            input.rating.rating-input(type='radio', name='rating', id='rating5', value='5')
+            label(for='rating5') 5
+        .form-group
+          label.form-label(for='review') Your Review
+          textarea#review.review-textarea(name='review', required)
+
+        .confirm-row
+          button.btn.submit.review-button Leave Review

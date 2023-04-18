@@ -1,4 +1,4 @@
-extends base
+extends homebase
 
 block content
   main.main
@@ -17,11 +17,21 @@ block content
               .service-row
                 .service-left
                   .service-subhead= service.title 
-                  .booking-text= service.subtitle
+                  .service-subtitle= service.subtitle
                     
                   - const paragraphs = service.description.split('|');
                   each p in paragraphs
                     .service-text= p
 
+                  if user 
+                    a.book-now-button(data-title=`${service.title}`, data-id=`${service.id}`) Book Now
+                  else 
+                    a.book-now-button(href='/login') Login to Book Now
+                    .page-text Don't have an account? 
+                      a(href='/signup') Create one now
+                      span  to book an appointment!
+
                 .service-right 
                   img(src=`images/services/${service.photo}`, alt=`Photo for ${service.title}`)
+
+  include _bookmodal

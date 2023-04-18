@@ -126,10 +126,11 @@ userSchema.methods.createPasswordResetToken = function () {
 };
 
 userSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: 'events',
-    select: '-__v',
-  });
+  this.populate([
+    {
+      path: 'events',
+    },
+  ]);
 
   next();
 });

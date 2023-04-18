@@ -1,0 +1,24 @@
+.modal-wrapper
+  .modal-container 
+    #event-close &#x2715
+    .modal-content
+      .page-title Cancel Appointment
+      hr.sectionHR
+      .page-subtitle Are you sure you want to cancel this appointment?
+      form#delete-event
+        input#cancelId(type='hidden', value='')
+        .booking-row
+          .booking-subhead Appointment Date: 
+            .booking-text#event-date
+          .booking-subhead Appointment Time: 
+            .booking-text#event-time
+          .booking-subhead Client Name: 
+            .booking-text#event-name
+          .booking-subhead Client Email: 
+            .booking-text#event-email
+          .booking-subhead Service Booked: 
+            .booking-text#event-service
+
+        .confirm-row
+          button.submit.confirm#cancel Yes, cancel this appointment
+          a.confirm#confirm-cancel No, keep this appointment

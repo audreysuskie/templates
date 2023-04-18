@@ -23,7 +23,7 @@ block content
             each active in actives 
               .booking-row
                 .service-subhead= active.title 
-                .booking-text= active.subtitle
+                .service-subtitle= active.subtitle
                 
                 - const paragraphs = active.description.split('|');
                 each p in paragraphs
@@ -44,11 +44,13 @@ block content
             each notactive in notactives 
               .booking-row
                 .service-subhead= notactive.title 
-                .booking-text= notactive.subtitle
+                .service-subtitle= notactive.subtitle
                 
                 - const paragraphs = notactive.description.split('|');
                 each p in paragraphs
                   .service-text= p
+
+                a.book-now-button(value=`${service.id}`) Book Now
 
               a.booking-text(href=`/updateService/${notactive.id}`) Edit Service
                 hr.sectionHR

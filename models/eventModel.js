@@ -20,8 +20,9 @@ const eventSchema = new mongoose.Schema(
     },
 
     service: {
-      type: String,
-      required: [true, 'Please specify a service.'],
+      type: mongoose.Schema.ObjectId,
+      ref: 'Service',
+      required: [true, 'A new appointment must include a service ID.'],
     },
 
     user: {
@@ -44,7 +45,12 @@ const eventSchema = new mongoose.Schema(
 eventSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'user',
-    select: 'name email id',
+    select: '-events',
+  });
+
+  this.populate({
+    path: 'service',
+    select: 'title',
   });
 
   next();

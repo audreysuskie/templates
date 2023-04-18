@@ -55,6 +55,8 @@ router.get(
   authController.restrictTo('admin'),
   viewsController.clientList
 );
+router.get('/reviews', authController.isLoggedIn, viewsController.userReviews);
+
 router.get(
   '/allbookings',
   authController.isLoggedIn,
@@ -66,7 +68,7 @@ router.get(
   viewsController.userBookings
 );
 router.get(
-  '/pastbookings',
+  '/history',
   authController.isLoggedIn,
   viewsController.pastUserBookings
 );

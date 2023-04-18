@@ -2,7 +2,10 @@ import '@babel/polyfill';
 import { login, logout } from './login';
 import { createaccount } from './createaccount';
 import { createevent } from './createevent';
+import { deleteevent } from './deleteevent';
 import { createservice } from './createservice';
+import { createreview } from './createreview';
+import { deletereview } from './createreview';
 import { updateservice, deleteservice } from './updateservice';
 import { forgotpassword } from './forgotpassword';
 import { resetpassword } from './resetpassword';
@@ -10,6 +13,7 @@ import { updateSettings } from './updateSettings';
 import { showAlert } from './alerts';
 
 const bookingForm = document.getElementById('booking-form');
+const bookingForm2 = document.getElementById('booking-form2');
 const serviceForm = document.getElementById('new-service-form');
 const updateServiceForm = document.getElementById('update-service-form');
 const loginForm = document.getElementById('login-form');
@@ -21,6 +25,7 @@ const userPasswordForm = document.querySelector('.form-user-password');
 const forgotPasswordForm = document.querySelector('.form--forgotpassword');
 const resetPasswordForm = document.querySelector('.form--resetpassword');
 const deleteService = document.getElementById('delete-service');
+const createReview = document.getElementById('create-review');
 
 const d = new Date();
 const formattedDate =
@@ -54,6 +59,17 @@ if (serviceForm) {
   });
 }
 
+if (bookingForm2) {
+  bookingForm2.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const eventDate = document.getElementById('book-date').value;
+    const eventTime = document.getElementById('book-time').value;
+    const service = document.getElementById('service').value;
+    const dateString = document.getElementById('date-string').value;
+    createevent(dateString, eventDate, eventTime, service);
+  });
+}
+
 if (bookingForm) {
   bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -62,6 +78,16 @@ if (bookingForm) {
     const service = document.getElementById('service').value;
     const dateString = document.getElementById('date-string').value;
     createevent(dateString, eventDate, eventTime, service);
+  });
+}
+
+if (createReview) {
+  createReview.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const service = document.getElementById('service').value;
+    const rating = document.querySelector('input[name="rating"]:checked').value;
+    const review = document.getElementById('review').value;
+    createreview(service, rating, review);
   });
 }
 
@@ -166,6 +192,22 @@ if (alertMessage) showAlert('success', alertMessage, 10);
 
 const close = document.getElementById('close');
 const modal = document.querySelector('.modal-wrapper');
+const cancel = document.getElementById('delete-event');
+const deleteReview = document.getElementById('delete-review');
+
+if (deleteReview)
+  deleteReview.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const deleteId = document.getElementById('deleteId').value;
+    deletereview(deleteId);
+  });
+
+if (cancel)
+  cancel.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const eventId = document.getElementById('cancelId').value;
+    deleteevent(eventId);
+  });
 
 if (close)
   close.addEventListener('click', () => {
