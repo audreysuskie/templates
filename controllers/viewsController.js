@@ -256,11 +256,15 @@ exports.accountHistory = catchAsync(async (req, res) => {
 exports.getAccount = catchAsync(async (req, res) => {
   const pendreviews = await Review.find({ status: 'pending' });
   const messages = await Message.find({ status: 'unread' });
+  const services = await Service.find({ active: { $ne: 'false' } }).sort({
+    title: 1,
+  });
   res.status(200).render('account', {
     title: 'Your Account',
     User,
     pendreviews,
     messages,
+    services,
   });
 });
 

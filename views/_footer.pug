@@ -1,5 +1,49 @@
 footer 
   .footer-content
-      - const thisYear = new Date().getFullYear();
-      span &copy;
-      span= `${thisYear} AudreyDesigns.com`
+    .footer-row
+      .footer-column 
+        .footer-header Services 
+        .footer-link 30-minute Consultation
+        .footer-link Botox®
+        .footer-link CoolSculpting®
+        .footer-link CoolTone®
+        .footer-link IPL Photofacial
+        .footer-link Juvéderm®
+        .footer-link Restylane®
+        .footer-link Ultherapy®
+        .footer-link Voluma®
+      .footer-column 
+        .footer-header Site Links 
+        .footer-link Home
+        .footer-link Services
+        .footer-link About Us
+        .footer-link FAQ's
+        .footer-link Contact Us
+      if !user
+        .footer-column 
+          .footer-header Account Links 
+          .footer-link Account Login
+          .footer-link Create Account
+      if user && user.role == 'user'
+        .footer-column 
+          .footer-header Account Links 
+          .footer-link Account Settings
+          .footer-link Account History
+          .footer-link Book Services
+          .footer-link Current Bookings
+          .footer-link Your Reviews
+      if user && user.role == 'admin'    
+        .footer-column 
+            .footer-header Administrator Links 
+            .footer-link Account Settings
+            .footer-link Edit Services
+            .footer-link Add New Service
+            .footer-link All Bookings
+            .footer-link Client Reviews
+            .footer-link Client List
+            .footer-link Messages
+      .footer-column   
+.copyright
+  - const thisYear = new Date().getFullYear();
+  span &copy;
+  span= `${thisYear} AudreyDesigns.com`
