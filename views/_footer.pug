@@ -2,49 +2,49 @@ footer
   .footer-content
     .footer-row
       .footer-column
-        .footer-header Services
+        .footer-header Our Services
         .container-row 
           .footer-container  
-            .footer-link Consultation
-            .footer-link Botox®
-            .footer-link CoolSculpting®
-            .footer-link CoolTone®
-            .footer-link IPL Photofacial
+            a.footer-link(href='/guestservices#30-minuteConsultation') Consultation
+            a.footer-link(href='/guestservices#Botox®') Botox®
+            a.footer-link(href='/guestservices#CoolSculpting®') CoolSculpting®
+            a.footer-link(href='/guestservices#CoolTone®') CoolTone®
+            a.footer-link(href='/guestservices#IPLPhotofacial') IPL Photofacial
           .footer-container
-            .footer-link Juvéderm®
-            .footer-link Restylane®
-            .footer-link Ultherapy®
-            .footer-link Voluma®
+            a.footer-link(href='/guestservices#Juvéderm®') Juvéderm®
+            a.footer-link(href='/guestservices#Restylane®') Restylane®
+            a.footer-link(href='/guestservices#Ultherapy®') Ultherapy®
+            a.footer-link(href='/guestservices#Voluma®') Voluma®
       .footer-column 
         .footer-header Site Links 
-        .footer-link Home
-        .footer-link Services
-        .footer-link About Us
-        .footer-link FAQ's
-        .footer-link Contact Us
+        a.footer-link(href='/') Home
+        a.footer-link(href='/guestservices') Services
+        a.footer-link(href='/aboutus') About Us
+        a.footer-link(href='/faqs') FAQ's
+        a.footer-link(href='/contact') Contact Us
       if !user
         .footer-column 
           .footer-header Account Links 
-          .footer-link Account Login
-          .footer-link Create Account
+          a.footer-link(href='/login') Account Login
+          a.footer-link(href='/signup') Create Account
       if user && user.role == 'user'
         .footer-column 
           .footer-header Account Links 
-          .footer-link Account Settings
-          .footer-link Account History
-          .footer-link Book Services
-          .footer-link Current Bookings
-          .footer-link Your Reviews
+          a.footer-link(href='/account') Account Settings
+          a.footer-link(href='/history') Account History
+          a.footer-link(href='/guestservices') Book Services
+          a.footer-link(href='/bookings') Current Bookings
+          a.footer-link(href='/reviews') Your Reviews
       if user && user.role == 'admin'    
         .footer-column 
-            .footer-header Administrator Links 
-            .footer-link Account Settings
-            .footer-link Edit Services
-            .footer-link Add New Service
-            .footer-link All Bookings
-            .footer-link Client Reviews
-            .footer-link Client List
-            .footer-link Messages
+            .footer-header Admin Links 
+            a.footer-link(href='/account') Account Settings
+            a.footer-link(href='/services') Edit Services
+            a.footer-link(href='/addservice') Add New Service
+            a.footer-link(href='/allbookings') All Bookings
+            a.footer-link(href='/allreviews') Client Reviews
+            a.footer-link(href='/clients') Client List
+            a.footer-link(href='/messages') Messages
       .footer-column 
         .container-row
           .footer-container

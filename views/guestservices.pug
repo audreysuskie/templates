@@ -14,6 +14,8 @@ block content
       else
         each service in services 
           .service-section
+            - const pageTag = service.title.replace(/\s/g, '');
+                div(id=pageTag)
             .service-row
               .service-left
                 .service-subhead= service.title 
@@ -31,7 +33,7 @@ block content
                     a(href='/signup') Create one now
                     span  to book an appointment!
 
-              .service-right 
+              .service-right
                 img(src=`images/services/${service.photo}`, alt=`Photo for ${service.title}`)
 
   include _bookmodal

@@ -31,6 +31,11 @@
   padding: 20px;
 }
 
+.footer-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .footer-column:last-of-type {
   flex-grow: 1;
   border-left: 1.5px solid #ffffff9b;
