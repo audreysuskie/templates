@@ -151,14 +151,13 @@ footer {
 
 .logo {
   width: 220px;
-  height: 120px;
-  padding: 4rem;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: var(--bgcolormed);
-  margin: 1rem;
+  margin: 0.5rem;
 }
 
 .main {

@@ -1,17 +1,20 @@
 footer 
   .footer-content
     .footer-row
-      .footer-column 
-        .footer-header Services 
-        .footer-link 30-minute Consultation
-        .footer-link Botox®
-        .footer-link CoolSculpting®
-        .footer-link CoolTone®
-        .footer-link IPL Photofacial
-        .footer-link Juvéderm®
-        .footer-link Restylane®
-        .footer-link Ultherapy®
-        .footer-link Voluma®
+      .footer-column
+        .footer-header Services
+        .container-row 
+          .footer-container  
+            .footer-link Consultation
+            .footer-link Botox®
+            .footer-link CoolSculpting®
+            .footer-link CoolTone®
+            .footer-link IPL Photofacial
+          .footer-container
+            .footer-link Juvéderm®
+            .footer-link Restylane®
+            .footer-link Ultherapy®
+            .footer-link Voluma®
       .footer-column 
         .footer-header Site Links 
         .footer-link Home
@@ -42,15 +45,18 @@ footer
             .footer-link Client Reviews
             .footer-link Client List
             .footer-link Messages
-      .footer-column  
-        .footer-header Company Name 
-        .footer-link 12345 Main Street 
-        .footer-link This City, State 00000
-        .footer-link (000) 000-0000
-        a(href='mailto:contact@emailaddress.com').footer-link contact@emailaddress.com 
+      .footer-column 
+        .container-row
+          .footer-container
+            img#footer-logo(src='/images/logo_gen.svg')
+          .footer-container
+            .footer-header Company Name 
+            .footer-text 12345 Main Street 
+            .footer-text This City, State 00000
+            .footer-text (000) 000-0000 
         .footer-icon-row 
           img.footer-icon(src='/images/socialicon-01.png', alt='linkedIn')
-          img.footer-icon(src='/images/socialicon-02.png', alt='facebook')
+          img.footer-icon(src='/images/socialicon-09.png', alt='facebook')
           img.footer-icon(src='/images/socialicon-03.png', alt='instagram')
           img.footer-icon(src='/images/socialicon-04.png', alt='twitter')
           img.footer-icon(src='/images/socialicon-05.png', alt='snapchat')
