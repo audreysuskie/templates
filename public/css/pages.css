@@ -351,3 +351,7 @@ a.delete-message {
 a.message-text {
   color: var(--pagetitle);
 }
+
+.mark-message {
+  margin-top: 10px;
+}

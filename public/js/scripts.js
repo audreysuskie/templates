@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('#email').text(email);
     $('#phone').text(phone);
     $('#message').text(message);
-    $('#status').text("'" + status + "'");
+    $('#status').text(status);
     $('.editmessage-wrapper').scrollTop();
   });
 

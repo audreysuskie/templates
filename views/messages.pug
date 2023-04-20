@@ -31,11 +31,9 @@ block content
                   .message-text= message.phone  
                 .message-subhead Date Sent: 
                   .message-text= message.sent  
-                .message-subhead Status: 
-                  .message-text= message.status
-                    if message.status == 'unread'
-                      | 
-                      button.mark-message.booking-text.small(href='#', 
+                if message.status == 'unread'
+                  | 
+                  button.mark-message.booking-text.small(href='#', 
                       data-name=`${message.name}`, 
                       data-email=`${message.email}`,
                       data-phone=`${message.phone}`,
@@ -76,11 +74,9 @@ block content
                 .message-text= message.phone  
               .message-subhead Date Sent: 
                 .message-text= message.sent  
-              .message-subhead Status: 
-                .message-text= message.status
-                  if message.status == 'unread'
-                    | 
-                    button.mark-message.booking-text.small(href='#', 
+              if message.status == 'unread'
+                | 
+                button.mark-message.booking-text.small(href='#', 
                     data-name=`${message.name}`, 
                     data-email=`${message.email}`,
                     data-phone=`${message.phone}`,

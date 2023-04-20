@@ -41,27 +41,6 @@ if (submitButton)
     e.target.textContent = 'Submitting...';
   });
 
-const formatphone = document.getElementById('phone');
-formatphone.addEventListener('keyup', function (e) {
-  if (
-    e.key != 'Backspace' &&
-    (formatphone.value.length === 3 || formatphone.value.length === 7)
-  ) {
-    formatphone.value += '-';
-  }
-});
-
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const message = document.getElementById('contact-message').value;
-    contactrequest(name, email, phone, message);
-  });
-}
-
 if (deleteService)
   deleteService.addEventListener('click', (e) => {
     const serviceId = document.getElementById('serviceId').value;
@@ -266,3 +245,24 @@ if (close)
   close.addEventListener('click', () => {
     modal.style.display = 'none';
   });
+
+const formatphone = document.getElementById('phone');
+formatphone.addEventListener('keyup', function (e) {
+  if (
+    e.key != 'Backspace' &&
+    (formatphone.value.length === 3 || formatphone.value.length === 7)
+  ) {
+    formatphone.value += '-';
+  }
+});
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('contact-message').value;
+    contactrequest(name, email, phone, message);
+  });
+}
