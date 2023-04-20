@@ -18,6 +18,7 @@
 }
 
 .footer-column:last-of-type {
+  flex-grow: 2;
   border-left: 1.5px solid #ffffff9b;
   padding-left: 80px;
 }
