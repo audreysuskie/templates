@@ -14,7 +14,7 @@ block content
             .page-date.small= `Today is ${today}`
         hr.sectionHR
         .section 
-          .page-subtitle= user.name.split(' ')[0]
+          .history-header= user.name.split(' ')[0]
             span 's Current Bookings
           - const count = events.length;
           - const curcount = currents.length;
@@ -25,19 +25,19 @@ block content
               .booking-subhead No current bookings to display at this time.
           else
             each current in currents 
-              .booking-row
-                .booking-header
+              .history-row
+                .history-booking-head
                   .booking-subhead= current.eventDate 
-                  .booking-text= `Time: ${current.eventTime}`
-                .booking-subhead Service Booked: 
-                  .booking-text= current.service.title 
-          if count > 1       
+                  .history-text= `Time: ${current.eventTime}`
+                .history-subhead Service Booked: 
+                  .history-text= current.service.title 
+          if count > 0       
             .cancel-booking-row
               a.form-text(href='/bookings') See all current bookings                
                     
         hr.sectionHR
         .section 
-          .page-subtitle= user.name.split(' ')[0]
+          .history-header= user.name.split(' ')[0]
             span 's Past Bookings
           
             .booking-count.small= `Showing ${pastcount} of ${pastcount} Bookings`
@@ -46,12 +46,12 @@ block content
               .booking-subhead No past bookings to display at this time.
           else
             each pastevent in pastevents 
-              .booking-row
-                .booking-header
+              .history-row
+                .history-booking-head
                   .booking-subhead= pastevent.eventDate 
-                  .booking-text= `Time: ${pastevent.eventTime}`
-                .booking-subhead Service Booked: 
-                  .booking-text= pastevent.service.title  
+                  .history-text= `Time: ${pastevent.eventTime}`
+                .history-subhead Service Booked: 
+                  .history-text= pastevent.service.title  
                 .cancel-booking-row
                   a.create-review(href='#', 
                   data-date=`${pastevent.eventDate}`, 
@@ -62,7 +62,7 @@ block content
                     
         hr.sectionHR
         .section 
-          .page-subtitle= user.name.split(' ')[0]
+          .history-header= user.name.split(' ')[0]
             span 's Reviews
           - const reviewcount = reviews.length;
           - const reviewcount2 = reviews2.length;
@@ -82,8 +82,8 @@ block content
                 .booking-subhead Date Reviewed: 
                   .booking-text= review2.createdAt               
                 hr.sectionHR 
-          if reviewcount > 2
+          if reviewcount > 0
             .cancel-booking-row
-              a.form-text(href='/reviews') See all reviews
+              a.form-text(href='/reviews') View/Delete Reviews
 
   include _reviewmodal  
