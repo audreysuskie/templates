@@ -31,7 +31,7 @@ const eventSchema = new mongoose.Schema(
       required: [true, 'You must be logged in to book a service.'],
     },
 
-    review: {
+    reviews: {
       type: mongoose.Schema.ObjectId,
       ref: 'Review',
     },
@@ -59,7 +59,7 @@ eventSchema.pre(/^find/, function (next) {
   });
 
   this.populate({
-    path: 'review',
+    path: 'reviews',
     select: 'rating review service',
   });
 

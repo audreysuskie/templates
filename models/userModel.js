@@ -78,19 +78,18 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+// userSchema.pre('save', async function (next) {
+//   const promises = this.events.map(async (id) => await Event.findById(id));
+//   this.events = await Promise.all(promises);
+//   next();
+// });
+
 userSchema.pre('save', function (next) {
   if (!this.isModified('password') || this.isNew) return next();
 
   this.passwordChangedAt = Date.now() - 1500;
   next();
 });
-
-// userSchema.pre('find', function (next) {
-//   this.find({
-//     active: { $ne: false },
-//   });
-//   next();
-// });
 
 userSchema.methods.correctPassword = async function (
   candidatePassword,
@@ -125,15 +124,13 @@ userSchema.methods.createPasswordResetToken = function () {
   return resetToken;
 };
 
-userSchema.pre(/^find/, function (next) {
-  this.populate([
-    {
-      path: 'events',
-    },
-  ]);
+// userSchema.pre(/^find/, function (next) {
+//   this.populate({
+//     path: 'events',
+//   });
 
-  next();
-});
+//   next();
+// });
 
 const User = mongoose.model('User', userSchema);
 

@@ -41,6 +41,16 @@ if (submitButton)
     e.target.textContent = 'Submitting...';
   });
 
+const formatphone = document.getElementById('phone');
+formatphone.addEventListener('keyup', function (e) {
+  if (
+    e.key != 'Backspace' &&
+    (formatphone.value.length === 3 || formatphone.value.length === 7)
+  ) {
+    formatphone.value += '-';
+  }
+});
+
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();

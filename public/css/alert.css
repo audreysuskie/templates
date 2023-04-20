@@ -14,7 +14,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 60vw;
+  min-width: 750px;
+  width: 70vw;
   height: 50vh;
   z-index: 2147483650;
   color: white;
@@ -23,7 +24,7 @@
   text-align: center;
   line-height: 120%;
   border-radius: 0rem;
-  padding: 10rem 5rem;
+  padding: 60px 60px;
   -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.354);
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
 }
@@ -37,5 +38,5 @@
   color: #000000;
 }
 .alert--error {
-  background-color: #f83e3bf0;
+  background-color: #000000ec;
 }

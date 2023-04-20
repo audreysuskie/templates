@@ -82,6 +82,21 @@ exports.updateUser = catchAsync(async (req, res, next) => {
   });
 });
 
+// exports.getUser = catchAsync(async (req, res, next) => {
+//   const user = await User.findById(req.params.id).populate('events');
+
+//   if (!user) {
+//     return next(new AppError(`No user found with that ID`, 404));
+//   }
+
+//   res.status(200).json({
+//     status: 'success',
+//     data: {
+//       user,
+//     },
+//   });
+// });
+
 exports.createUser = factory.createOne(User);
 exports.getUser = factory.getOne(User);
 exports.getAllUsers = factory.getAll(User);

@@ -14719,6 +14719,12 @@ var formattedDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear()
 if (submitButton) submitButton.addEventListener('click', function (e) {
   e.target.textContent = 'Submitting...';
 });
+var formatphone = document.getElementById('phone');
+formatphone.addEventListener('keyup', function (e) {
+  if (e.key != 'Backspace' && (formatphone.value.length === 3 || formatphone.value.length === 7)) {
+    formatphone.value += '-';
+  }
+});
 if (contactForm) {
   contactForm.addEventListener('submit', function (e) {
     e.preventDefault();

@@ -91,7 +91,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   if (!token) {
     return next(
       new AppError(
-        'You are not logged in. Please login or create an account.',
+        'The email you entered is already being used by another account. Please try registering with another email. If a problem persists, please contact our office directly.',
         401
       )
     );
