@@ -7,6 +7,7 @@
   align-items: flex-start;
   text-align: left;
   line-height: 180%;
+  align-items: stretch;
 }
 
 .footer-column {
@@ -14,6 +15,11 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
+}
+
+.footer-column:last-of-type {
+  border-left: 1.5px solid #ffffff9b;
+  padding-left: 80px;
 }
 
 .footer-header {
@@ -28,6 +34,7 @@
   font-size: 1.3rem;
   opacity: 0.6;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .footer-link:hover {
@@ -44,4 +51,19 @@
 
 .hide {
   opacity: 0;
+}
+
+.footer-icon-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.footer-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin: 3px;
 }
