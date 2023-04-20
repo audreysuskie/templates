@@ -1,0 +1,24 @@
+.deletemessage-wrapper
+  .modal-container 
+    #event-close &#x2715
+    .modal-content
+      .page-title Delete Message
+      hr.sectionHR
+      .page-subtitle Are you sure you want to delete this message?
+      form#delete-message
+        input#messageId2(type='hidden', value='')
+        .booking-row
+          .modal-subhead From: 
+          .modal-subtext#name2
+          .modal-subhead Email: 
+          .modal-subtext#email2
+          .modal-subhead Phone: 
+          .modal-subtext#phone2
+          .modal-subhead Message: 
+          .modal-subtext#message2
+          .modal-subhead Sent: 
+          .modal-subtext#sent2
+
+        .confirm-row
+          button.submit.confirm#cancel Yes, delete this message
+          a.confirm#confirm-cancel No, keep this message

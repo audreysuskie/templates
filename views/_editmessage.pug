@@ -1,0 +1,24 @@
+.editmessage-wrapper
+  .modal-container 
+    #event-close &#x2715
+    .modal-content
+      .page-title Mark Message As Read?
+      hr.sectionHR
+      form#mark-message
+        input#messageId(type='hidden', value='')
+        .booking-row
+          .modal-subhead From: 
+          .modal-subtext#name
+          .modal-subhead Contact Email: 
+          .modal-subtext#email
+          .modal-subhead Contact Phone: 
+          .modal-subtext#phone
+          .modal-subhead Message: 
+          .modal-subtext#message
+          .modal-subhead Sent: 
+          .modal-subtext#sent
+
+        .confirm-row
+          button.submit.confirm Yes, mark as read
+          a.confirm#confirm-cancel No, keep as 
+            span#status

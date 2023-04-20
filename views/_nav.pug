@@ -32,6 +32,13 @@
             span.small= `${pendcount} pending`
       a(href='/clients') 
         .nav-link Client List
+      - const msg = messages.length;
+      a(href='/messages') 
+        .nav-link Messages
+          if msg > 0
+            | 
+            span.small= `( ${msg} )`
+
       hr.sectionHR
       a#logout 
         .nav-link Log Out

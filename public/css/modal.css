@@ -1,6 +1,8 @@
 .modal-wrapper,
 .homemodal-wrapper,
-.publishmodal-wrapper {
+.publishmodal-wrapper,
+.editmessage-wrapper,
+.deletemessage-wrapper {
   display: none;
   position: fixed;
   top: 0;

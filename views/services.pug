@@ -29,7 +29,7 @@ block content
                 each p in paragraphs
                   .service-text= p
 
-              a.booking-text(href=`/updateService/${active.id}`) Edit Service
+              a.book-now-button(href=`/updateService/${active.id}`) Edit Service
                 hr.sectionHR
         .page-gap
         .section 
@@ -52,7 +52,7 @@ block content
 
                 a.book-now-button(value=`${service.id}`) Book Now
 
-              a.booking-text(href=`/updateService/${notactive.id}`) Edit Service
+              a.book-now-button(href=`/updateService/${notactive.id}`) Edit Service
                 hr.sectionHR
             
                  

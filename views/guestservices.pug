@@ -7,31 +7,31 @@ block content
       .service-section 
         .service-title-row
           .page-title= title
-        - const count = services.length;         
-        if count == 0
-          .service-row 
-            .booking-subhead No availables services to display at this time.
-        else
-          each service in services 
-            .service-section
-              .service-row
-                .service-left
-                  .service-subhead= service.title 
-                  .service-subtitle= service.subtitle
-                    
-                  - const paragraphs = service.description.split('|');
-                  each p in paragraphs
-                    .service-text= p
+      - const count = services.length;         
+      if count == 0
+        .service-row 
+          .booking-subhead No availables services to display at this time.
+      else
+        each service in services 
+          .service-section
+            .service-row
+              .service-left
+                .service-subhead= service.title 
+                .service-subtitle= service.subtitle
+                  
+                - const paragraphs = service.description.split('|');
+                each p in paragraphs
+                  .service-text= p
 
-                  if user 
-                    a.book-now-button(data-title=`${service.title}`, data-id=`${service.id}`) Book Now
-                  else 
-                    a.book-now-button(href='/login') Login to Book Now
-                    .page-text Don't have an account? 
-                      a(href='/signup') Create one now
-                      span  to book an appointment!
+                if user 
+                  a.book-now-button(data-title=`${service.title}`, data-id=`${service.id}`) Book Now
+                else 
+                  a.book-now-button(href='/login') Login to Book Now
+                  .page-text Don't have an account? 
+                    a(href='/signup') Create one now
+                    span  to book an appointment!
 
-                .service-right 
-                  img(src=`images/services/${service.photo}`, alt=`Photo for ${service.title}`)
+              .service-right 
+                img(src=`images/services/${service.photo}`, alt=`Photo for ${service.title}`)
 
   include _bookmodal

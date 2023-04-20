@@ -11,6 +11,9 @@ import { updateservice, deleteservice } from './updateservice';
 import { forgotpassword } from './forgotpassword';
 import { resetpassword } from './resetpassword';
 import { updateSettings } from './updateSettings';
+import { contactrequest } from './contactrequest';
+import { markmessage } from './markmessage';
+import { deletemessage } from './markmessage';
 import { showAlert } from './alerts';
 
 const bookingForm = document.getElementById('booking-form');
@@ -27,6 +30,7 @@ const forgotPasswordForm = document.querySelector('.form--forgotpassword');
 const resetPasswordForm = document.querySelector('.form--resetpassword');
 const deleteService = document.getElementById('delete-service');
 const createReview = document.getElementById('create-review');
+const contactForm = document.getElementById('contact-form');
 
 const d = new Date();
 const formattedDate =
@@ -36,6 +40,17 @@ if (submitButton)
   submitButton.addEventListener('click', (e) => {
     e.target.textContent = 'Submitting...';
   });
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('contact-message').value;
+    contactrequest(name, email, phone, message);
+  });
+}
 
 if (deleteService)
   deleteService.addEventListener('click', (e) => {
@@ -197,6 +212,23 @@ const modal = document.querySelector('.modal-wrapper');
 const cancel = document.getElementById('delete-event');
 const deleteReview = document.getElementById('delete-review');
 const publishReview = document.getElementById('publish-review');
+const markMessage = document.getElementById('mark-message');
+const deleteMessage = document.getElementById('delete-message');
+
+if (markMessage)
+  markMessage.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('messageId').value;
+    const status = 'read';
+    markmessage(status, id);
+  });
+
+if (deleteMessage)
+  deleteMessage.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = document.getElementById('messageId2').value;
+    deletemessage(id);
+  });
 
 if (publishReview)
   publishReview.addEventListener('submit', (e) => {

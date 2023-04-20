@@ -63,6 +63,13 @@ router.get(
   authController.restrictTo('admin'),
   viewsController.allReviews
 );
+router.get(
+  '/messages',
+  authController.isLoggedIn,
+  authController.protect,
+  authController.restrictTo('admin'),
+  viewsController.allMessages
+);
 
 router.get(
   '/allbookings',

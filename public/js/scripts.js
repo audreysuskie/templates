@@ -4,6 +4,23 @@ $(document).ready(function () {
     $('.homemodal-wrapper').scrollTop();
   });
 
+  $('.mark-message').click(function () {
+    $('.editmessage-wrapper').css('display', 'flex');
+    var id = $(this).data('id');
+    var name = $(this).data('name');
+    var email = $(this).data('email');
+    var phone = $(this).data('phone');
+    var status = $(this).data('status');
+    var message = $(this).data('message');
+    $('#messageId').attr('value', id);
+    $('#name').text(name);
+    $('#email').text(email);
+    $('#phone').text(phone);
+    $('#message').text(message);
+    $('#status').text("'" + status + "'");
+    $('.editmessage-wrapper').scrollTop();
+  });
+
   $('.publish-review').click(function () {
     $('.publishmodal-wrapper').css('display', 'flex');
     var id = $(this).data('id');
@@ -89,6 +106,23 @@ $(document).ready(function () {
     $('.modal-wrapper').scrollTop();
   });
 
+  $('.delete-message').click(function () {
+    $('.deletemessage-wrapper').css('display', 'flex');
+    var id = $(this).data('id');
+    var name = $(this).data('name');
+    var email = $(this).data('email');
+    var phone = $(this).data('phone');
+    var status = $(this).data('status');
+    var message = $(this).data('message');
+    $('#messageId2').attr('value', id);
+    $('#name2').text(name);
+    $('#email2').text(email);
+    $('#phone2').text(phone);
+    $('#message2').text(message);
+    $('#status2').text("'" + status + "'");
+    $('.deletemessage-wrapper').scrollTop();
+  });
+
   $('#event-close, #confirm-cancel').click(function () {
     $('#event-date').text('');
     $('#event-time').text('');
@@ -101,6 +135,8 @@ $(document).ready(function () {
     $('.modal-wrapper').css('display', 'none');
     $('.homemodal-wrapper').css('display', 'none');
     $('.publishmodal-wrapper').css('display', 'none');
+    $('.editmessage-wrapper').css('display', 'none');
+    $('.deletemessage-wrapper').css('display', 'none');
   });
 
   // Animation

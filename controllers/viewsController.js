@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const Review = require('../models/reviewModel');
 const Event = require('../models/eventModel');
 const Service = require('../models/serviceModel');
+const Message = require('../models/messageModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 // const factory = require('./handlerFactory');
@@ -51,6 +52,7 @@ exports.contactPage = catchAsync(async (req, res) => {
 });
 
 exports.guestServices = catchAsync(async (req, res) => {
+  const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' });
   const services = await Service.find({ active: { $ne: 'false' } }).sort({
     title: 1,
@@ -59,10 +61,12 @@ exports.guestServices = catchAsync(async (req, res) => {
     title: 'Our Services',
     services,
     pendreviews,
+    messages,
   });
 });
 
 exports.services = catchAsync(async (req, res) => {
+  const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' });
   const actives = await Service.find({ active: { $ne: 'false' } }).sort({
     title: 1,
@@ -73,18 +77,22 @@ exports.services = catchAsync(async (req, res) => {
     actives,
     notactives,
     pendreviews,
+    messages,
   });
 });
 
 exports.addService = catchAsync(async (req, res) => {
+  const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' });
   res.status(200).render('addservice', {
     title: 'Add New Service',
     pendreviews,
+    messages,
   });
 });
 
 exports.updateService = catchAsync(async (req, res) => {
+  const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' });
   const service = await Service.findById(req.params.serviceId);
 
@@ -92,10 +100,12 @@ exports.updateService = catchAsync(async (req, res) => {
     title: 'Edit Service',
     service,
     pendreviews,
+    messages,
   });
 });
 
 exports.clientList = catchAsync(async (req, res) => {
+  const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' });
   const users = await User.find({ active: { $eq: true }, role: 'user' });
   const users2 = await User.find({ active: { $eq: false } });
@@ -104,10 +114,12 @@ exports.clientList = catchAsync(async (req, res) => {
     users,
     users2,
     pendreviews,
+    messages,
   });
 });
 
 exports.allBookings = catchAsync(async (req, res) => {
+  const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' });
   const events = await Event.find({ dateString: { $gte: today } }).sort({
     dateString: 1,
@@ -124,6 +136,7 @@ exports.allBookings = catchAsync(async (req, res) => {
     events,
     pastevents,
     pendreviews,
+    messages,
   });
 });
 
@@ -133,15 +146,18 @@ exports.userReviews = catchAsync(async (req, res) => {
     user: userId,
   });
   const pendreviews = await Review.find({ status: 'pending' });
+  const messages = await Message.find();
 
   res.status(200).render('userreviews', {
     title: 'Reviews',
     reviews,
     pendreviews,
+    messages,
   });
 });
 
 exports.allReviews = catchAsync(async (req, res) => {
+  const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' }).sort({
     createdAt: -1,
   });
@@ -153,11 +169,30 @@ exports.allReviews = catchAsync(async (req, res) => {
     title: 'Reviews',
     pendreviews,
     reviews,
+    messages,
+  });
+});
+
+exports.allMessages = catchAsync(async (req, res) => {
+  const pendreviews = await Review.find({ status: 'pending' });
+  const messages = await Message.find({ status: 'unread' }).sort({
+    sent: -1,
+  });
+  const readmessages = await Message.find({ status: 'read' }).sort({
+    sent: -1,
+  });
+
+  res.status(200).render('messages', {
+    title: 'Messages',
+    pendreviews,
+    messages,
+    readmessages,
   });
 });
 
 exports.userBookings = catchAsync(async (req, res) => {
   const userId = res.locals.user.id;
+  const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' });
   const events = await Event.find({
     user: userId,
@@ -171,11 +206,13 @@ exports.userBookings = catchAsync(async (req, res) => {
     title: 'User Bookings',
     events,
     pendreviews,
+    messages,
   });
 });
 
 exports.accountHistory = catchAsync(async (req, res) => {
   const userId = res.locals.user.id;
+  const messages = await Message.find({ status: 'unread' });
   const events = await Event.find({
     user: userId,
     dateString: { $gte: today },
@@ -212,15 +249,18 @@ exports.accountHistory = catchAsync(async (req, res) => {
     pastevents,
     reviews,
     reviews2,
+    messages,
   });
 });
 
 exports.getAccount = catchAsync(async (req, res) => {
   const pendreviews = await Review.find({ status: 'pending' });
+  const messages = await Message.find({ status: 'unread' });
   res.status(200).render('account', {
     title: 'Your Account',
     User,
     pendreviews,
+    messages,
   });
 });
 

@@ -1,6 +1,5 @@
 const nodemailer = require('nodemailer');
 const pug = require('pug');
-const htmlToText = require('html-to-text');
 
 module.exports = class Email {
   constructor(user, url) {
@@ -8,7 +7,7 @@ module.exports = class Email {
     this.firstName = user.name.split(' ')[0];
     this.token = url.split('resetPassword/')[1];
     this.tokenUrl = url.split('api/')[0];
-    this.from = `Audrey Fernandez <${process.env.EMAIL_FROM}>`;
+    this.from = `Audrey Designs <${process.env.EMAIL_FROM}>`;
   }
 
   newTransport() {
@@ -47,7 +46,6 @@ module.exports = class Email {
       to: this.to,
       subject,
       html,
-      //text: htmlToText.fromString(html),
     };
 
     await this.newTransport().sendMail(mailOptions);
@@ -55,6 +53,10 @@ module.exports = class Email {
 
   async sendWelcome() {
     await this.send('welcome', 'Welcome!');
+  }
+
+  async sendContact() {
+    await this.send('contactreq', 'Thank you for your contact request!');
   }
 
   async sendPasswordReset() {

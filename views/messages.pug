@@ -1,0 +1,106 @@
+extends base
+
+block content
+  main.main
+    .user-view
+      include _nav
+      .user-view-content
+        .page-header
+          .page-title= `New ${title}`
+          - const d = new Date();
+          - const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          - const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+          - const today = day[d.getDay()] + ', ' + month[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+            .page-date.small= `Today is ${today}`
+        .section 
+          - const newcount = messages.length;
+            .booking-count.small= `Showing ${newcount} of ${newcount} Messages`
+
+          if newcount == 0
+            .booking-row 
+              .message-subhead No new messages to display at this time
+
+          else
+            each message in messages
+              .message-row
+                .message-subhead From: 
+                  .message-text= message.name
+                .message-subhead Contact Email: 
+                  .message-text= message.email  
+                .message-subhead Contact Phone:  
+                  .message-text= message.phone  
+                .message-subhead Date Sent: 
+                  .message-text= message.sent  
+                .message-subhead Status: 
+                  .message-text= message.status
+                    if message.status == 'unread'
+                      | 
+                      button.mark-message.booking-text.small(href='#', 
+                      data-name=`${message.name}`, 
+                      data-email=`${message.email}`,
+                      data-phone=`${message.phone}`,
+                      data-message=`${message.message}`,
+                      data-status=`${message.status}`,
+                      data-id=`${message.id}`,
+                      ) mark as read 
+                hr.sectionHR  
+                .message-subhead Message: 
+                .message-text= message.message  
+
+                .cancel-booking-row
+                  a.delete-message(href='#', 
+                    data-name=`${message.name}`, 
+                    data-email=`${message.email}`,
+                    data-phone=`${message.phone}`,
+                    data-message=`${message.message}`,
+                    data-status=`${message.status}`,
+                    data-id=`${message.id}`,
+                    ) Delete Message    
+                    
+          hr.sectionHR
+          .page-title= `Read ${title}`
+          - const readcount = readmessages.length;
+            .booking-count.small= `Showing ${readcount} of ${readcount} Messages`
+
+          if readcount == 0
+            .booking-row 
+              .message-subhead No read messages to display at this time
+
+          each message in readmessages
+            .message-row
+              .message-subhead From: 
+                .message-text= message.name
+              .message-subhead Contact Email: 
+                .message-text= message.email  
+              .message-subhead Contact Phone:  
+                .message-text= message.phone  
+              .message-subhead Date Sent: 
+                .message-text= message.sent  
+              .message-subhead Status: 
+                .message-text= message.status
+                  if message.status == 'unread'
+                    | 
+                    button.mark-message.booking-text.small(href='#', 
+                    data-name=`${message.name}`, 
+                    data-email=`${message.email}`,
+                    data-phone=`${message.phone}`,
+                    data-message=`${message.message}`,
+                    data-status=`${message.status}`,
+                    data-id=`${message.id}`,
+                    ) mark as read 
+              hr.sectionHR  
+              .message-subhead Message: 
+              .message-text= message.message  
+
+              .cancel-booking-row
+                a.delete-message(href='#', 
+                  data-name=`${message.name}`, 
+                  data-email=`${message.email}`,
+                  data-phone=`${message.phone}`,
+                  data-message=`${message.message}`,
+                  data-status=`${message.status}`,
+                  data-id=`${message.id}`,
+                    ) Delete Message               
+                      
+  include _editmessage
+  include _deletemessage

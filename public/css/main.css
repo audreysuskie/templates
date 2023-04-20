@@ -149,6 +149,18 @@ footer {
   }
 }
 
+.logo {
+  width: 220px;
+  height: 120px;
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--bgcolormed);
+  margin: 1rem;
+}
+
 .main {
   position: relative;
   top: 0;
@@ -171,6 +183,6 @@ footer {
   font-size: 1.6rem;
   width: 100%;
   min-height: 70vh;
-  max-width: 1000%;
+  max-width: 100%;
   margin: 0rem auto;
 }
