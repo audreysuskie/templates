@@ -1,5 +1,19 @@
 let today = new Date();
 let calendarShow = 1;
+let unavailableDays = [
+  '4232023',
+  '4242023',
+  '4302023',
+  '5012023',
+  '5072023',
+  '5082023',
+  '5142023',
+  '5152023',
+  '5212023',
+  '5222023',
+  '5282023',
+  '5292023',
+];
 
 function formatToday(date) {
   var d = new Date(date),
@@ -204,22 +218,15 @@ document.getElementById('calendar').innerHTML = content;
 
 const currentDay = document.getElementById(formatToday(today));
 const td = document.querySelectorAll('.td');
-
 currentDay.classList.add('today');
+
 for (let t = 0; t < td.length; t++) {
-  if (td[t].id <= formatToday(today)) {
+  unavailableDay = unavailableDays.includes(td[t].id);
+  if (td[t].id <= formatToday(today) || unavailableDay === true) {
     td[t].classList.remove('available');
     td[t].classList.add('unavailable');
   }
 }
-
-// for (let u = 0; u < td.length; u++) {
-//   const weekday2 = td.attr('value');
-//   if (weekday2[u] == 'Saturday') {
-//     td[u].classList.remove('available');
-//     td[u].classList.add('unavailable');
-//   }
-// }
 
 const booking = document.getElementById('book-date');
 const dateString = document.getElementById('date-string');
