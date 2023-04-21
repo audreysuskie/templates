@@ -14,7 +14,7 @@ export const deleteevent = async (eventId) => {
     if (res.status === 204) {
       showAlert('success', 'Your appointment has been cancelled.');
       window.setTimeout(() => {
-        location.assign('/allbookings');
+        location.reload(true);
       }, 1500);
     }
   } catch (err) {

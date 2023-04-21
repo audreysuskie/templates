@@ -12275,7 +12275,7 @@ var login = /*#__PURE__*/function () {
           if (res.data.status === 'success') {
             (0, _alerts.showAlert)('success', 'Logged in successfully');
             window.setTimeout(function () {
-              location.assign('/');
+              location.assign('/account');
             }, 1500);
           }
           _context.next = 10;
@@ -12876,7 +12876,7 @@ var deleteevent = /*#__PURE__*/function () {
           if (res.status === 204) {
             (0, _alerts.showAlert)('success', 'Your appointment has been cancelled.');
             window.setTimeout(function () {
-              location.assign('/allbookings');
+              location.reload(true);
             }, 1500);
           }
           _context.next = 10;
@@ -14904,13 +14904,13 @@ if (cancel) cancel.addEventListener('submit', function (e) {
 if (close) close.addEventListener('click', function () {
   modal.style.display = 'none';
 });
-var formatphone = document.getElementById('phone');
-formatphone.addEventListener('keyup', function (e) {
-  if (e.key != 'Backspace' && (formatphone.value.length === 3 || formatphone.value.length === 7)) {
-    formatphone.value += '-';
-  }
-});
 if (contactForm) {
+  var formatphone = document.getElementById('phone');
+  formatphone.addEventListener('keyup', function (e) {
+    if (e.key != 'Backspace' && (formatphone.value.length === 3 || formatphone.value.length === 7)) {
+      formatphone.value += '-';
+    }
+  });
   contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
     var name = document.getElementById('name').value;

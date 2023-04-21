@@ -1,4 +1,9 @@
 $(document).ready(function () {
+  $('#book-date-note').hide();
+  $('#book-date').click(function () {
+    $('#book-date-note').show();
+  });
+
   $('.home-book-button').click(function () {
     $('.homemodal-wrapper').css('display', 'flex');
     $('.homemodal-wrapper').scrollTop();

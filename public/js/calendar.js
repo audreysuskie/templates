@@ -77,6 +77,7 @@ function getDatesBetween(date1, date2) {
     weekDays.map((item) => {
       content += '<div class="th">' + item.shortDay + '</div>';
     });
+
     content += '</div>';
     content += '<div class="tbody">';
     let j = 1;
@@ -87,7 +88,7 @@ function getDatesBetween(date1, date2) {
 
       for (let k = 0; k < 7; k++) {
         displayNum = j < 10 ? '0' + j : j;
-
+        let weekday = weekDays[k].fullDay;
         if (j === 1) {
           if (firstDate.toString().split(' ')[0] == weekDays[k].shortDay) {
             content +=
@@ -96,6 +97,8 @@ function getDatesBetween(date1, date2) {
               displayNum +
               currentYear +
               '" value="' +
+              weekday +
+              ', ' +
               firstDate.toLocaleString('en-US', { month: 'long' }) +
               ' ' +
               displayNum +
@@ -123,6 +126,8 @@ function getDatesBetween(date1, date2) {
             displayNum +
             currentYear +
             '" value="' +
+            weekday +
+            ', ' +
             firstDate.toLocaleString('en-US', { month: 'long' }) +
             ' ' +
             displayNum +
@@ -199,14 +204,22 @@ document.getElementById('calendar').innerHTML = content;
 
 const currentDay = document.getElementById(formatToday(today));
 const td = document.querySelectorAll('.td');
+
 currentDay.classList.add('today');
 for (let t = 0; t < td.length; t++) {
-  if (td[t].id < formatToday(today)) {
+  if (td[t].id <= formatToday(today)) {
     td[t].classList.remove('available');
     td[t].classList.add('unavailable');
   }
-  console.log(formatDate(today));
 }
+
+// for (let u = 0; u < td.length; u++) {
+//   const weekday2 = td.attr('value');
+//   if (weekday2[u] == 'Saturday') {
+//     td[u].classList.remove('available');
+//     td[u].classList.add('unavailable');
+//   }
+// }
 
 const booking = document.getElementById('book-date');
 const dateString = document.getElementById('date-string');

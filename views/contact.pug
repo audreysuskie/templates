@@ -28,9 +28,11 @@ block content
             form#contact-form
               .form-group
                 label.form-label(for='name') Your Name
+                  span#required *
                 input#name.form-input(type='text', required)
               .form-group
                 label.form-label(for='email') Email address
+                  span#required *
                 input#email.form-input(type='email', required)
               .form-group
                 label.form-label(for='phone') Phone Number
@@ -38,8 +40,12 @@ block content
                 input#phone.form-input(type='tel', pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}')
               .form-group
                 label.form-label(for='contact-message') Your Message
+                  span#required *
                 textarea.form-textarea#contact-message(name='contact-message', required) 
               .form-group
+                .text   
+                  span#required * 
+                  .text = required
                 button.submitButton.submit.form-button Send Request
           .section-col 
             .text-col

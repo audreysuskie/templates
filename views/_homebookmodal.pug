@@ -2,12 +2,27 @@
   .modal-container 
     #event-close &#x2715
     .modal-content
-      .page-title Book Your Service
       .home-row 
         .home-section-col 
           include _calendar
+          .guide-row
+            .calendar-guide
+              .guide-container
+                .guide-img.today #
+                .guide-text Today
+              .guide-container 
+                .guide-img.available #
+                .guide-text Available 
+              .guide-container
+                .guide-img.selected #
+                .guide-text Selected 
+              .guide-container
+                .guide-img.unavailable #
+                .guide-text Unavailable
         .home-section-col
-          .modal-subtext Select a date from one of the available dates on the calendar. Then select a service and an appointment time from the available options.
+          .page-title Book Your Service
+          br
+          .modal-subtext Select a date from one of the available dates on the calendar. Then select an appointment time from the available options.
 
           form#booking-form2(style='width: 100%;')
             input#date-string(type='hidden', name='date-string')
@@ -18,8 +33,9 @@
                 each service in services
                   option(value=`${service.id}`)= service.title
             .form-group
-              label.form-label(for='book-date') Date Selected
-              input#book-date.form-input(type='text', name='book-date' required)
+              label.form-label(for='book-date') Select Date
+              span#book-date-note.small Please select by clicking on an available date on the calendar.
+              input#book-date.form-input(type='text', name='book-date', readonly)
             .form-group
               label.form-label(for='book-time') Appointment Time
               select.form-input(id='book-time',name='book-time')

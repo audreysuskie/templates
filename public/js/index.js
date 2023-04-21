@@ -246,17 +246,17 @@ if (close)
     modal.style.display = 'none';
   });
 
-const formatphone = document.getElementById('phone');
-formatphone.addEventListener('keyup', function (e) {
-  if (
-    e.key != 'Backspace' &&
-    (formatphone.value.length === 3 || formatphone.value.length === 7)
-  ) {
-    formatphone.value += '-';
-  }
-});
-
 if (contactForm) {
+  const formatphone = document.getElementById('phone');
+  formatphone.addEventListener('keyup', function (e) {
+    if (
+      e.key != 'Backspace' &&
+      (formatphone.value.length === 3 || formatphone.value.length === 7)
+    ) {
+      formatphone.value += '-';
+    }
+  });
+
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('name').value;

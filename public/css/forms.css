@@ -132,3 +132,16 @@ summary {
   background-color: #fff;
   width: 100%;
 }
+
+#book-date-note {
+  margin: -0.5rem 0rem 1rem 0.5rem;
+}
+
+#required {
+  display: inline;
+  color: rgb(173, 31, 31);
+}
+
+.text {
+  display: inline;
+}
