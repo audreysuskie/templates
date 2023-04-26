@@ -8,6 +8,7 @@ module.exports = class Email {
     this.token = url.split('resetPassword/')[1];
     this.tokenUrl = url.split('api/')[0];
     this.from = `Audrey Designs <${process.env.EMAIL_FROM}>`;
+    this.message = user.message;
   }
 
   newTransport() {
@@ -39,6 +40,7 @@ module.exports = class Email {
       token: this.token,
       url: this.url,
       subject,
+      message: this.message,
     });
 
     const mailOptions = {

@@ -1,0 +1,38 @@
+extends base
+
+block content
+  main.main
+    .user-view
+      include _nav
+      .user-view-content
+        .page-title= title 
+        .page-subtitle Add Available Dates for Services 
+        .section 
+          .form-group
+            include _selectcalendar
+          .form-group
+            form#availability-form
+              .service-text Select dates available from the calendar above. Click on a date to select it. Selected dates will change color. Click selected dates to deselect.
+              .form-group
+                label.form-label(for='service') Which service are you adding availability for?
+                select#service.form-select(name='service', required)
+                  option(value='') Select Service
+                  each service in services
+                    option(value=`${service.id}`)= service.title
+
+              //- .form-group
+              //-   label.form-label(for='time') Add Time Available
+              //-   select.form-select(name='time', id='time', required)
+              //-     option(value='09:00am') 9:00am
+              //-     option(value='10:30am') 10:30am
+              //-     option(value='12:00pm') 12:00pm
+              //-     option(value='1:30pm') 1:30pm
+              //-     option(value='3:00pm') 3:00pm
+              //-     option(value='4:30pm') 4:30pm
+
+              .form-group
+                input#availdates.form-input(type='hidden', name='availdates')
+                button.submit.form-button Add Dates
+
+
+

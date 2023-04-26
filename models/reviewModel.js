@@ -38,10 +38,10 @@ const reviewSchema = new mongoose.Schema(
       type: String,
       enum: {
         values: ['pending', 'published', 'unpublished'],
-        default: 'pending',
         message:
           'A review must have a status of pending, published, or unpublished',
       },
+      default: 'pending',
     },
   },
   {

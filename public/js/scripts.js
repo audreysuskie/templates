@@ -4,11 +4,6 @@ $(document).ready(function () {
     $('#book-date-note').show();
   });
 
-  $('.home-book-button').click(function () {
-    $('.homemodal-wrapper').css('display', 'flex');
-    $('.homemodal-wrapper').scrollTop();
-  });
-
   $('.mark-message').click(function () {
     $('.editmessage-wrapper').css('display', 'flex');
     var id = $(this).data('id');
@@ -41,15 +36,6 @@ $(document).ready(function () {
     $('#user').text(user);
     $('#status').text("'" + status + "'");
     $('.publishmodal-wrapper').scrollTop();
-  });
-
-  $('.book-now-button').click(function () {
-    $('.modal-wrapper').css('display', 'flex');
-    var id = $(this).data('id');
-    var title = $(this).data('title');
-    $('#service').attr('value', id);
-    $('#service-title').attr('value', title);
-    $('.modal-wrapper').scrollTop();
   });
 
   $('.item-logo').click(function () {
@@ -142,6 +128,18 @@ $(document).ready(function () {
     $('.publishmodal-wrapper').css('display', 'none');
     $('.editmessage-wrapper').css('display', 'none');
     $('.deletemessage-wrapper').css('display', 'none');
+  });
+
+  //Home Page Booking Button Redirect
+  $('.home-book-button').hide();
+  let homeserviceId;
+  let original_link = '/bookService/';
+  $('#homeservice').on('change', function () {
+    $('.home-book-button').attr('href', original_link);
+    homeserviceId = $(this).val();
+    var new_href = $('.home-book-button').attr('href') + homeserviceId;
+    $('.home-book-button').attr('href', new_href);
+    $('.home-book-button').show();
   });
 
   // Animation

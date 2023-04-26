@@ -105,7 +105,7 @@
   color: var(--navtext);
   width: 47%;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 a.section-text {
@@ -120,10 +120,11 @@ a.section-text:hover {
 .text-col {
   width: 100%;
   text-align: left;
+  margin-top: 10px;
 }
 
 iframe {
-  margin: 3rem 10px 3rem 10px;
+  margin: 2.5rem 10px 2.5rem 10px;
 }
 
 .form-photo {
@@ -220,6 +221,10 @@ a.booking-text {
   font-weight: lighter;
   margin: 10px 0px;
   color: var(--pagetext);
+}
+
+.service-text a {
+  color: var(--linktext);
 }
 
 .service-row {

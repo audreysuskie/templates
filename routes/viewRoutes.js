@@ -41,6 +41,14 @@ router.get(
 );
 
 router.get(
+  '/bookService/:serviceId',
+  authController.isLoggedIn,
+  authController.protect,
+  authController.restrictTo('admin', 'user'),
+  viewsController.bookService
+);
+
+router.get(
   '/addservice',
   authController.isLoggedIn,
   authController.protect,
@@ -69,6 +77,13 @@ router.get(
   authController.protect,
   authController.restrictTo('admin'),
   viewsController.allMessages
+);
+router.get(
+  '/availability',
+  authController.isLoggedIn,
+  authController.protect,
+  authController.restrictTo('admin'),
+  viewsController.availability
 );
 
 router.get(

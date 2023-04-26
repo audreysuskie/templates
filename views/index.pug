@@ -1,4 +1,4 @@
-extends homebase
+extends base
 include reviews
 
 block content
@@ -37,8 +37,13 @@ block content
       .home-section.white
         .section-heading Don't wait! Book Your Service Today.
         if user
-          a.home-book-button(href='#').btn.login-button Book Now
-
+          //-a.home-book-button(href='#').btn.login-button Book Now
+          .form-group
+            select.form-select(id='homeservice', name='homeservice')
+              option(value='not selected' selected) select a service
+              each service in services
+                option(value=`${service.id}`)= service.title
+          a.home-book-button(href=`#homeservice`).btn.login-button Book Now
         if !user
           a(href='/login').btn.login-button Login Now
           .page-text Don't have an account? 

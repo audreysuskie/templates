@@ -1,5 +1,6 @@
 let today = new Date();
 let calendarShow = 1;
+let unavailableDays = [];
 
 function formatToday(date) {
   var d = new Date(date),
@@ -45,7 +46,7 @@ function getDatesBetween(date1, date2) {
     }
   }
   let content =
-    '<div class="calendarButtons"><button id="prev" onclick="callprev()" disabled>< Prev</button><button id="next" onclick="callnext()">Next ></button></div>';
+    '<div class="calendarButtons"><button id="prev2" onclick="callprev()" disabled>< Prev</button><button id="next2" onclick="callnext()">Next ></button></div>';
   let weekDays = [
     { shortDay: 'Sun', fullDay: 'Sunday' },
     { shortDay: 'Mon', fullDay: 'Monday' },
@@ -82,7 +83,7 @@ function getDatesBetween(date1, date2) {
     content += '<div class="tbody">';
     let j = 1;
     let displayNum;
-
+    let valMonth = firstDate.toLocaleString('en-US', { month: 'long' });
     while (j <= LastDate.getDate()) {
       content += '<div class="tr">';
 
@@ -92,24 +93,18 @@ function getDatesBetween(date1, date2) {
         if (j === 1) {
           if (firstDate.toString().split(' ')[0] == weekDays[k].shortDay) {
             content +=
-              '<div class="td unavailable" id="' +
+              '<div class="td select" id="' +
               currentMonth +
               displayNum +
               currentYear +
               '" value="' +
               weekday +
               ', ' +
-              firstDate.toLocaleString('en-US', { month: 'long' }) +
+              valMonth +
               ' ' +
               displayNum +
               ', ' +
               currentYear +
-              '" data-date="' +
-              currentYear +
-              '-' +
-              currentMonth +
-              '-' +
-              displayNum +
               '">' +
               displayNum +
               '</div>';
@@ -121,7 +116,7 @@ function getDatesBetween(date1, date2) {
           content += '<div class="td nohover"></div>';
         } else {
           content +=
-            '<div class="td unavailable" id="' +
+            '<div class="td select" id="' +
             currentMonth +
             displayNum +
             currentYear +
@@ -133,12 +128,6 @@ function getDatesBetween(date1, date2) {
             displayNum +
             ', ' +
             currentYear +
-            '" data-date="' +
-            currentYear +
-            '-' +
-            currentMonth +
-            '-' +
-            displayNum +
             '">' +
             displayNum +
             '</div>';
@@ -157,7 +146,7 @@ function getDatesBetween(date1, date2) {
 
 function callnext() {
   let allmonths = document.getElementsByClassName('calendarDiv');
-  document.getElementById('prev').disabled = false;
+  document.getElementById('prev2').disabled = false;
   calendarShow++;
   if (calendarShow <= allmonths.length) {
     for (let i = 0; i < allmonths.length; i++) {
@@ -166,14 +155,14 @@ function callnext() {
     document.getElementById('calendarTable_' + calendarShow).style.display =
       'block';
     if (calendarShow == allmonths.length) {
-      document.getElementById('next').disabled = true;
+      document.getElementById('next2').disabled = true;
     }
   }
 }
 
 function callprev() {
   let allmonths = document.getElementsByClassName('calendarDiv');
-  document.getElementById('next').disabled = false;
+  document.getElementById('next2').disabled = false;
   calendarShow--;
   if (calendarShow >= 1) {
     for (let i = 0; i < allmonths.length; i++) {
@@ -182,7 +171,7 @@ function callprev() {
     document.getElementById('calendarTable_' + calendarShow).style.display =
       'block';
     if (calendarShow == 1) {
-      document.getElementById('prev').disabled = true;
+      document.getElementById('prev2').disabled = true;
     }
   }
 }
@@ -199,34 +188,38 @@ function formatDate(date) {
   return [year, month, day].join('/');
 }
 
-let content = getDatesBetween(formatDate(today), '2024/04/01');
-document.getElementById('calendar').innerHTML = content;
+let content = getDatesBetween(formatDate(today), '2024/01/01');
+
+document.getElementById('selectcalendar').innerHTML = content;
 
 const currentDay = document.getElementById(formatToday(today));
 const td = document.querySelectorAll('.td');
 currentDay.classList.add('today');
 
-const serviceSelected = document.getElementById(
-  'service-availability'
-).textContent;
-console.log(serviceSelected);
-let availableDays = serviceSelected;
 for (let t = 0; t < td.length; t++) {
-  availableDay = availableDays.includes(td[t].id);
-  if (availableDay === true && td[t].id >= formatToday(today)) {
-    td[t].classList.remove('unavailable');
-    td[t].classList.add('available');
+  let unavailableDay = unavailableDays.includes(td[t].id);
+  if (td[t].id < formatToday(today) || unavailableDay === true) {
+    td[t].classList.remove('select');
+    td[t].classList.add('unavailable');
   }
 }
 
-const booking = document.getElementById('book-date');
-const dateString = document.getElementById('date-string');
+const availableDate = document.getElementById('availdates');
+const availArray = [];
 
 $(document).ready(function () {
-  $('.available').click(function () {
-    $('.td').removeClass('selected');
-    booking.value = $(this).attr('value');
-    dateString.value = $(this).attr('data-date');
+  $('.tbody').on('click', '.select', function (e) {
+    $(this).removeClass('select');
     $(this).addClass('selected');
+    availArray.push($(this).attr('id'));
+    availableDate.value = availArray;
+  });
+
+  $('.tbody').on('click', '.selected', function (e) {
+    $(this).removeClass('selected');
+    $(this).addClass('select');
+    const clicked = availArray.indexOf($(this).attr('id'));
+    availArray.splice(clicked, 1);
+    availableDate.value = availArray;
   });
 });

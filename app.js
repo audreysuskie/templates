@@ -19,6 +19,7 @@ const reviewRouter = require('./routes/reviewRoutes');
 const eventRouter = require('./routes/eventRoutes');
 const serviceRouter = require('./routes/serviceRoutes');
 const messageRouter = require('./routes/messageRoutes');
+const calendarRouter = require('./routes/calendarRoutes');
 
 const app = express();
 
@@ -82,6 +83,7 @@ app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/events', eventRouter);
 app.use('/api/v1/services', serviceRouter);
 app.use('/api/v1/messages', messageRouter);
+app.use('/api/v1/availables', calendarRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Your request for ${req.originalUrl} was not found`, 404));

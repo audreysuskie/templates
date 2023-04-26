@@ -29,14 +29,11 @@ const serviceSchema = new mongoose.Schema({
     default: 'true',
     select: 'false',
   },
-});
 
-// serviceSchema.pre('find', function (next) {
-//   this.find({
-//     active: { $ne: false },
-//   });
-//   next();
-// });
+  availability: {
+    type: Array,
+  },
+});
 
 serviceSchema.plugin(mongooseDateFormat);
 const Service = mongoose.model('Service', serviceSchema);

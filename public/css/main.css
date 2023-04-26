@@ -183,3 +183,7 @@ footer {
   max-width: 100%;
   margin: 0rem auto;
 }
+
+.hidden {
+  display: none;
+}

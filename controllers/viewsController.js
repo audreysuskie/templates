@@ -3,6 +3,7 @@ const Review = require('../models/reviewModel');
 const Event = require('../models/eventModel');
 const Service = require('../models/serviceModel');
 const Message = require('../models/messageModel');
+const Calendar = require('../models/calendarModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 // const factory = require('./handlerFactory');
@@ -22,6 +23,7 @@ exports.checkEmail = (req, res) => {
 };
 
 exports.getHomePage = catchAsync(async (req, res) => {
+  const availables = await Calendar.find().sort({ service: 1 });
   const reviews = await Review.find().limit(3).sort({ createdAt: 1 });
   const services = await Service.find().sort({
     title: 1,
@@ -30,6 +32,7 @@ exports.getHomePage = catchAsync(async (req, res) => {
     title: 'Home Page',
     reviews,
     services,
+    availables,
   });
 });
 
@@ -52,6 +55,7 @@ exports.contactPage = catchAsync(async (req, res) => {
 });
 
 exports.guestServices = catchAsync(async (req, res) => {
+  const availables = await Calendar.find().sort({ service: 1 });
   const messages = await Message.find({ status: 'unread' });
   const pendreviews = await Review.find({ status: 'pending' });
   const services = await Service.find({ active: { $ne: 'false' } }).sort({
@@ -62,6 +66,15 @@ exports.guestServices = catchAsync(async (req, res) => {
     services,
     pendreviews,
     messages,
+    availables,
+  });
+});
+
+exports.bookService = catchAsync(async (req, res) => {
+  const service = await Service.findById(req.params.serviceId);
+  res.status(200).render('bookservice', {
+    title: 'Book Service',
+    service,
   });
 });
 
@@ -78,6 +91,22 @@ exports.services = catchAsync(async (req, res) => {
     notactives,
     pendreviews,
     messages,
+  });
+});
+
+exports.availability = catchAsync(async (req, res) => {
+  const availables = await Calendar.find().sort({ service: 1 });
+  const messages = await Message.find({ status: 'unread' });
+  const pendreviews = await Review.find({ status: 'pending' });
+  const services = await Service.find({ active: { $ne: 'false' } }).sort({
+    title: 1,
+  });
+  res.status(200).render('availability', {
+    title: 'Edit Calendar',
+    services,
+    pendreviews,
+    messages,
+    availables,
   });
 });
 

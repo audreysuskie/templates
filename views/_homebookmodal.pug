@@ -22,13 +22,17 @@
         .home-section-col
           .page-title Book Your Service
           br
-          .modal-subtext Select a date from one of the available dates on the calendar. Then select an appointment time from the available options.
+          .modal-subtext Select a service from the options below. Then, select a date from one of the available dates on the calendar and an appointment time from the available options. Click 'Book Now' to book your appointment.
+          .array-div(style='display: none')
+            each available in availables
+              .each-array 
+                div(id=available.service._id + 'sel').dates-available= `${available.available}`
 
           form#booking-form2(style='width: 100%;')
             input#date-string(type='hidden', name='date-string')
             .form-group(style='width: 100%;')
               label.form-label(for='service') Select Service
-              select.form-input(id='service',name='service')
+              select.form-input(id='service', name='service')
                 option(value='not selected' selected) select service -
                 each service in services
                   option(value=`${service.id}`)= service.title

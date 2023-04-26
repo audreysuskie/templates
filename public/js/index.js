@@ -15,6 +15,7 @@ import { contactrequest } from './contactrequest';
 import { markmessage } from './markmessage';
 import { deletemessage } from './markmessage';
 import { showAlert } from './alerts';
+import { addAvailability } from './availability';
 
 const bookingForm = document.getElementById('booking-form');
 const bookingForm2 = document.getElementById('booking-form2');
@@ -31,6 +32,7 @@ const resetPasswordForm = document.querySelector('.form--resetpassword');
 const deleteService = document.getElementById('delete-service');
 const createReview = document.getElementById('create-review');
 const contactForm = document.getElementById('contact-form');
+const addServiceAvailability = document.getElementById('availability-form');
 
 const d = new Date();
 const formattedDate =
@@ -47,6 +49,16 @@ if (deleteService)
     const form = new FormData();
     form.append('active', false);
     deleteservice(serviceId, form, 'data');
+  });
+
+if (addServiceAvailability)
+  addServiceAvailability.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const serviceId = document.getElementById('service').value;
+    const dates = document.getElementById('availdates').value;
+    const availability = dates.split(',');
+
+    addAvailability(serviceId, availability);
   });
 
 if (serviceForm) {

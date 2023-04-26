@@ -3,6 +3,7 @@ const sharp = require('sharp');
 const Service = require('../models/serviceModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handlerFactory');
+const AppError = require('../utils/appError');
 
 const multerStorage = multer.memoryStorage();
 
@@ -75,7 +76,8 @@ exports.updateService = catchAsync(async (req, res, next) => {
     'title',
     'subtitle',
     'description',
-    'active'
+    'active',
+    'availability'
   );
   if (req.file) filteredBody.photo = req.file.filename;
 
@@ -92,6 +94,28 @@ exports.updateService = catchAsync(async (req, res, next) => {
     status: 'success',
     data: {
       data: updatedService,
+    },
+  });
+});
+
+exports.updateAvailable = catchAsync(async (req, res, next) => {
+  const origArray = await Service.findById(req.params.id);
+  const array1 = origArray.availability;
+  const array2 = req.body.availability;
+  const array3 = array1.concat(array2);
+
+  const newAvailable = await Service.findByIdAndUpdate(req.params.id, {
+    availability: array3,
+  });
+
+  if (!newAvailable) {
+    return next(new AppError(`No service found with that ID`, 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      newAvailable,
     },
   });
 });

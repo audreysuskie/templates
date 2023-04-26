@@ -11,6 +11,8 @@ router.post(
   serviceController.createService
 );
 
+router.patch('/availability/:id', serviceController.updateAvailable);
+
 router.patch(
   '/:id',
   serviceController.uploadPhoto,

@@ -1,7 +1,10 @@
 extends baseEmail
 
 block content
-  p Hi #{firstName},
-  p Just a quick email to let you know we've recieved your contact request. A team memebr will respond to you shortly.
-  p If you hhave any further questions, please contact our office directly.
-  p Thank you!
+  .text-box
+    p.align-left Hi #{firstName},
+    p.align-left Just a quick email to let you know we've recieved your contact request. You can see a copy of the message you sent below. A team member will respond to you shortly.
+    p.align-left If you have any further questions, please contact our office directly.
+    p.align-left Thank you!
+  .message-title YOUR MESSAGE: 
+  .messsage-box #{message}
