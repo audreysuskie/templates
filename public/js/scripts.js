@@ -1,3 +1,10 @@
+function preload_image(im_url) {
+  let img = new Image();
+  img.src = im_url;
+}
+
+preload_image('/images/JumboImage.jpg');
+
 $(document).ready(function () {
   $('#book-date-note').hide();
   $('#book-date').click(function () {
