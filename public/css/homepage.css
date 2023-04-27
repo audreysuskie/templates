@@ -20,6 +20,29 @@
   overflow: hidden;
 }
 
+@keyframes toColor {
+  0% {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+  25% {
+    -webkit-filter: grayscale(75%);
+    filter: grayscale(75%);
+  }
+  50% {
+    -webkit-filter: grayscale(50%);
+    filter: grayscale(50%);
+  }
+  75% {
+    -webkit-filter: grayscale(25%);
+    filter: grayscale(25%);
+  }
+  100% {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+  }
+}
+
 .main-image-wrapper {
   display: block;
   position: absolute;
@@ -34,6 +57,7 @@
   text-align: center;
   overflow: hidden;
   background-color: var(--bgcolordark);
+  animation: toColor 3s;
 }
 
 .main-image {
@@ -293,15 +317,17 @@ button.book-button::after,
 
 #homeservice {
   font-size: 2rem;
-  width: 370px;
   margin: 0px auto;
   text-align: center;
-  background-color: var(--bgcolor);
+  background-color: #fff;
   color: var(--pagetitle);
-  border: 0;
-  padding: 15px;
+  border: 2px solid var(--pagetitle);
+  padding: 15px 30px;
   transition: 1s;
-  border-radius: 7.5px;
+  border-radius: 3rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 #homeservice:focus {
@@ -309,6 +335,6 @@ button.book-button::after,
 }
 
 #homeservice:hover {
-  background-color: var(--bgcolormed);
+  background-color: var(--bgcolor);
   cursor: pointer;
 }
