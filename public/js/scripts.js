@@ -6,6 +6,11 @@ function preload_image(im_url) {
 preload_image('/images/JumboImage.jpg');
 
 $(document).ready(function () {
+  $('.res-menu-drop').hide();
+  $('#res-nav-logo, .res-menu-link').click(function () {
+    $('.res-menu-drop').slideToggle();
+  });
+
   $('#book-date-note').hide();
   $('#book-date').click(function () {
     $('#book-date-note').show();

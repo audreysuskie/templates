@@ -2,6 +2,7 @@
 font-family: 'Quicksand', sans-serif; */
 
 .form-style {
+  max-width: 95%;
   width: 70rem;
   padding: 5rem;
   border: 0.2rem solid var(--border);

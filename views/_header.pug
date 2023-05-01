@@ -15,6 +15,24 @@ header
           .login-menu |
           a#signup.login-menu(href='/signup') create account
 
+      .res-login
+        .res-box
+        .res-logo-box
+          img#res-nav-logo(src='/images/logo_gen.svg')
+        .res-box 
+          a(href='/signup') create account
+          .resHR
+          a(href='/login') login
+      .res-menu-drop
+        a.res-menu-link(href='/guestservices') services
+        a.res-menu-link(href='/aboutus') about us
+        a.res-menu-link(href='/faqs') FAQ's   
+        a.res-menu-link(href='/contact') contact us  
+        a.res-menu-link(href='/') home page 
+        hr.res-div
+        
+        a#signup.res-menu-link(href='/signup') create account
+
     if user
       .login
         .nav-left
@@ -29,4 +47,20 @@ header
           .login-menu= `Hello ${user.name.split(' ')[0]}!`
           .login-menu |
           a.login-menu(href='/account') view account
+
+      .res-login
+        .res-box
+        .res-logo-box
+          img#res-nav-logo(src='/images/logo_gen.svg')
+        .res-box
+          a(href='/account')= `Hello ${user.name.split(' ')[0]}!`
+      .res-menu-drop
+        a.res-menu-link(href='/guestservices') services
+        a.res-menu-link(href='/aboutus') about us
+        a.res-menu-link(href='/faqs') FAQ's   
+        a.res-menu-link(href='/contact') contact us 
+        a.res-menu-link(href='/') home page  
+        hr.res-div
+        a.res-menu-link(href='/account') view account
+
           

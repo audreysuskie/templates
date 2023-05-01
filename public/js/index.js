@@ -56,6 +56,7 @@ if (addServiceAvailability)
     e.preventDefault();
     const serviceId = document.getElementById('service').value;
     const dates = document.getElementById('availdates').value;
+    const times = document.getElementById('time').value;
     const availability = dates.split(',');
 
     addAvailability(serviceId, availability);

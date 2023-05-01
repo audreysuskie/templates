@@ -34,12 +34,18 @@
   padding: 3rem 1rem 1rem 1rem;
 }
 
-.login a {
+.res-login {
+  display: none;
+}
+
+.login a,
+.login-menu a {
   text-decoration: none;
   color: var(--headertext);
 }
 
-.login a:hover {
+.login a:hover,
+.login-menu a:hover {
   color: silver;
   border: silver;
 }

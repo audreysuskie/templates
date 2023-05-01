@@ -79,7 +79,7 @@ body {
 header {
   position: relative;
   color: var(--headertext);
-  z-index: 3;
+  z-index: 6;
   background-color: var(--headerbg);
   /*animation: slideFromTop 1.5s ease-out;*/
 }
@@ -93,7 +93,7 @@ footer {
   min-height: 200px;
   background-color: var(--footerbg);
   color: var(--footertext);
-  z-index: 2;
+  z-index: 6;
   /*animation: slideFromBottom 1.25s ease-in 0.5s;*/
 }
 
@@ -186,4 +186,255 @@ footer {
 
 .hidden {
   display: none;
+}
+
+.res-map {
+  display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .main-map {
+    display: none;
+  }
+
+  .res-map {
+    display: block;
+  }
+  .res-div {
+    width: 100%;
+    border-style: none;
+    border: 1px solid var(--headerbg);
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    mix-blend-mode: multiply;
+    opacity: 0.3;
+  }
+
+  .resHR {
+    width: 80%;
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    opacity: 0.3;
+    height: 2px;
+    background-color: #fff;
+  }
+
+  .res-login {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding: 0.5rem 2rem;
+  }
+
+  .res-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: calc(100% / 3);
+    text-align: right;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .res-box a {
+    text-decoration: none;
+    color: var(--headertext);
+  }
+
+  .res-box a:hover {
+    color: silver;
+  }
+
+  #res-nav-logo {
+    height: 64px;
+    cursor: pointer;
+  }
+
+  .res-logo-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 3);
+    text-align: center;
+  }
+
+  .res-menu-drop {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 5;
+    top: 80px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: #494640cc;
+  }
+
+  a.res-menu-link {
+    font-weight: 200;
+    width: 100%;
+    line-height: 200%;
+    padding: 1rem 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  a.res-menu-link:hover {
+    background-color: var(--bgcolormed);
+    color: var(--headerbg);
+  }
+
+  .home-section,
+  .service-section {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+  .main-content-wrapper {
+    max-width: 100%;
+    padding: 2rem;
+  }
+
+  .text-wrapper {
+    padding: 0;
+  }
+
+  #product-slide {
+    display: none;
+  }
+
+  .login {
+    display: none;
+  }
+
+  .reviews_grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reviews__card {
+    width: 95%;
+  }
+
+  footer {
+    min-height: auto;
+  }
+
+  .footer-row {
+    flex-direction: column;
+  }
+
+  .footer-column {
+    display: none;
+  }
+
+  .footer-column:last-of-type {
+    display: flex;
+    width: 100%;
+    border-left: 0;
+    padding: 0.7rem 2rem;
+    margin: 0px auto;
+  }
+
+  .service-title-row,
+  .section-title-row {
+    padding: 1.5rem 1rem 0.7rem 1rem;
+  }
+
+  .service-row {
+    flex-direction: column-reverse;
+    padding: 10px;
+  }
+
+  .service-section:nth-child(even) > div {
+    flex-direction: column-reverse;
+  }
+
+  .service-left,
+  .service-right {
+    width: 100%;
+  }
+
+  .service-right {
+    height: 160px;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .section-row {
+    flex-direction: column;
+    padding: 0.7rem 1rem;
+  }
+
+  .section-col,
+  .home-section-col {
+    width: 100%;
+  }
+
+  .home-section-col {
+    padding: 2rem 0rem;
+  }
+
+  .form-textarea {
+    min-height: 200px;
+  }
+
+  #calendar {
+    min-height: auto;
+  }
+
+  .nav-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    width: 210px;
+    transform: translateX(-170px);
+    height: 100%;
+    transition: 0.5s;
+    padding: 3rem;
+  }
+
+  .nav-wrapper:hover {
+    transform: translateX(0px);
+    cursor: pointer;
+  }
+
+  .user-view-content {
+    width: 100%;
+    padding: 5rem 3rem 5rem 7rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .res-tab {
+    position: absolute;
+    right: 9px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--navtext);
+    width: 30px;
+  }
+
+  .res-tab-text {
+    width: 8px;
+    height: 50px;
+    border-left: 1.5px solid var(--navtext);
+    border-right: 1.5px solid var(--navtext);
+    opacity: 0.3;
+  }
 }

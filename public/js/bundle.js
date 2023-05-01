@@ -14918,6 +14918,7 @@ if (addServiceAvailability) addServiceAvailability.addEventListener('submit', fu
   e.preventDefault();
   var serviceId = document.getElementById('service').value;
   var dates = document.getElementById('availdates').value;
+  var times = document.getElementById('time').value;
   var availability = dates.split(',');
   (0, _availability.addAvailability)(serviceId, availability);
 });
@@ -15141,7 +15142,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51515" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64583" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
