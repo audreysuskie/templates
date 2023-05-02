@@ -462,11 +462,23 @@ footer {
     scroll-behavior: auto;
   }
 
+  .alert-container {
+    width: 100%;
+  }
+
   .alert {
-    min-width: 250px;
+    min-width: none;
+    width: 95%;
+    min-height: 50vh;
+    margin: 0 auto;
   }
 
   .alert-text {
     font-size: 2.4rem;
+  }
+
+  .modal-container {
+    min-width: none;
+    padding: 20px 40px;
   }
 }
