@@ -453,4 +453,20 @@ footer {
     border-right: 1.5px solid var(--navtext);
     opacity: 0.3;
   }
+
+  .modal-wrapper,
+  .homemodal-wrapper,
+  .publishmodal-wrapper,
+  .editmessage-wrapper,
+  .deletemessage-wrapper {
+    scroll-behavior: auto;
+  }
+
+  .alert {
+    min-width: 250px;
+  }
+
+  .alert-text {
+    font-size: 2.4rem;
+  }
 }
